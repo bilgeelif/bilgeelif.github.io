@@ -4,3 +4,24 @@
 
 "PhysRev":
   url: https://journals.aps.org/
+
+"VIT":
+  url: https://arxiv.org/abs/2010.11929
+
+"UNet3":
+  url: https://arxiv.org/abs/2004.08790
+
+"Attention":
+  url: https://arxiv.org/abs/1706.03762
+
+"Faster R-CNN":
+  url: https://arxiv.org/abs/1506.01497
+
+"Batch Norm.":
+  url: https://arxiv.org/abs/1502.03167
+
+"ADAM":
+  url: https://arxiv.org/abs/1412.6980
+
+"Segment Any.":
+  url: https://arxiv.org/abs/2304.02643

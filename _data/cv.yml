@@ -2,96 +2,110 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
+      value: Elif Bilge
     - name: Date of Birth
-      value: 14th March 1879
+      value: 3rd July 1996
     - name: Languages
-      value: English, German
+      value: English, Turkish, German (long time ago 🙂 ) 
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
-      description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
-      description:
-        - Description 1.
-        - Description 2.
+    #- title: PhD
+    #  institution: University of Zurich, Zurich, Switzerland
+    #  year: 1905
+    #  description:
+    #    - Description 1.
+    #    - Description 2.
+    #    - title: Description 3.
+    #      contents:
+    #        - Sub-description 1.
+    #        - Sub-description 2.
+    - title: Bachelor in Electric and Electronic Engineering 
+      institution: Bilkent University, Ankara, Turkey
+      year: 2014-2019
+      #description:
+      #  - Description 1.
+      #  - Description 2.
 
 - title: Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Computer Vision / Research Engineer 
+      institution: Disun Software Healtcare Systems, Turkey 
+      year: Mar 2022 - Present  
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
+        - Developed a decision support application to assist pathologists in detecting tumor budding.
+        - Developed an automatic HER2 scoring algorithm to assist pathologists in selecting the optimal cancer treatment strategy.
+        - Designed and implemented a computer vision algorithm that automatically maps selected regions in Hematoxylin-Eosin images to corresponding regions in DAPI image.
+        - Designed an algorithm for automatic analysis and visualization system of fluorescence in situ hybridization (FISH) images.
+        - Built up an automatic spectral karyotype analysis
+        #- Designed an automatic detection of antinuclear antibody on immunofluorescence images. 
+        #- All these projects are supported by TUBITAK. I submitted all projects with a desktop application prototype for pathologists to evaluate
+        - title: Designed an automatic detection of antinuclear antibody on immunofluorescence images. 
           contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
+            - All these projects are supported by TUBITAK. I submitted all projects with a desktop application prototype for pathologists to evaluate
+
+    - title: Research Engineer 
+      institution: National Magnetic Resonance Research Center-UMRAM Ankara, Turkey
+      year: Feb 2021 - Dec 2022
       description:
-        - Description 1.
-        - Description 2.
+        - To eliminate vendor dependency on MRI sequence execution, work on the design of MRI spectrometer for also worked on the development and reconstruction of MRI sequences via Pulseq’s open-source framework in collaboration with ASELSAN.
+        - Lead the project of FPGA-based Spectrometer for MRI project under the University-Industry Collaboration between Bilkent University and UMRAM, which aims to establish communication between sequences and scanner to provide flexibility in the transmission of waveforms
 
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
+    - title: Computer Vision Engineer 
+      institution: Papilon Defense, Inc. Ankara, Turkey
+      year:  Jul 2020 - Nov 2020
+      description: 
+      - Design of an algorithm to detect license plates in video streams and perform optical character recognition to identify the letters and numbers on license plates for smart parking systems’ automated registration and authentication processes.
 
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
+    - title: Summer Intern
+      institution: Aselsan, Inc. Ankara, Turkey
+      year: Jun 2018 - Jul 2018
       description:
+      - Offer service through Windows Communication Foundations (WCF) framework in Model-View-Controller (MVC) pattern to create a platform of user login page with the username and password.
 
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
+    - title: Summer Intern 
+      institution: KIWI, Ltd. Ankara, Turkey
+      year: Jul 2017 - Aug 2017
+      description:
+      - Worked on drone motor communication via FPGA.
 
-- title: Open Source Projects
-  type: time_table
-  contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+# - title: Open Source Projects
+#   type: time_table
+#   contents:
+#     - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
+#       year: 2015-now
+#       description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
 
 - title: Honors and Awards
   type: time_table
   contents:
-    - year: 1921
+    - year: 2006-2007
       items: 
-        - Nobel Prize in Physics 
-        - Matteucci Medal
-    - year: 2029
+        - 5th Place Award at Classical Music Competition with Western Music Instruments, by District Directorate Of National Education
+    - year: 2007-2008 
       items: 
-        - Max Planck Medal
+        - Jury’s Special Award at Classical Music Competition with Western Music Instruments, Ankara, District Directorate Of National Education
+    - year: 2017 
+      items: 
+        - Participant , Women's Summit at Bilkent University
+    
+    - year: 2021 
+      items: 
+        - Participant , ISMRM & SMRT Annual Meeting & Exhibition
+
 
 - title: Academic Interests
   type: nested_list
   contents:
-    - title: Topic 1.
-      items: 
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
-      items:
-        - Description 1.
-        - Description 2.
+    - title: Computer Vision , Machine Learning, Medical Imaging 
+    # - title :  
+    #   items:
+    #     - Description 1.
+    #     - Description 2.
 
-- title: Other Interests
-  type: list
-  contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+#- title: Other Interests
+#  type: list
+#  contents:
+#    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.

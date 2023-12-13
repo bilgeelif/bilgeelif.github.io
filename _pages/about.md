@@ -2,25 +2,25 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+# subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
 
 profile:
   align: right
-  image: prof_pic.jpg
+  image: cv_photo.jpeg
   image_circular: false # crops the image to make it circular
-  more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+  #address: >
+  #  <p>555 your office number</p>
+  #  <p>123 your address street</p>
+  #  <p>Your City, State 12345</p>
 
-news: true  # includes a list of news items
+# news: true  # includes a list of news items
 latest_posts: true  # includes a list of the newest posts
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+As a computer vision research engineer, my focus lies in the domain of medical image R&D projects. I am actively engaged in the development of cutting-edge algorithms and systems that leverage various approaches, including traditional computer vision and machine learning, to automate specific tasks. My experience has taught me how to tackle complex problems and break them down into smaller, more manageable parts. I have also took part in the user interface integration of the projects. In addition to my technical skills, I am a highly adaptable professional who embraces teamwork, but also enjoys working independently. I thrive in collaborative environments where I can contribute my skills and learn from my colleagues, while also taking ownership of individual tasks and responsibilities. Throughout my career, I have collaborated with a diverse range of professionals, from medical doctors to software engineers, to deliver successful projects that exceed expectations.
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+<!-- My ability to adapt quickly to changing priorities and technologies has been crucial to the success of many of the projects I have been involved in. Whether working as part of a team or independently, I always strive to deliver high-quality results that meet or exceed expectations. -->
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+<!-- Experienced computer vision engineer passionate about developing new algorithms and systems for putting medical image R&D projects into practice. My current work consists of designing computer vision approaches to automate specific tasks including traditional computer vision and machine learning approaches, various algorithms, and heuristics. Proven ability to take complex problems and break them down into manageable parts and leading to successful product launches.  -->

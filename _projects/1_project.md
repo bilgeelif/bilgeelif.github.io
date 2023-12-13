@@ -1,81 +1,75 @@
 ---
 layout: page
-title: project 1
-description: a project with a background image
-img: assets/img/12.jpg
+title: FISH Analyze 
+description: #Cell and Signal Analyze on FISH Images
+img: assets/img/cellCover.png
 importance: 1
 category: work
-related_publications: einstein1956investigations, einstein1950meaning
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+The analysis of nuclei on fluorescent in situ hybridization (FISH) is an important technique used in pathology to identify and characterize genetic abnormalities and mutations in cells. This technique provides a way to visualize specific DNA sequences and chromosomal regions within the nuclei of cells, allowing for the detection of genetic changes that may be associated with diseases such as cancer.
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+FISH analysis can be used to detect a wide range of genetic abnormalities, including chromosomal translocations, deletions, and amplifications, as well as gene fusions and mutations. By detecting these genetic changes, FISH analysis can help pathologists to accurately diagnose and classify various types of cancers and other diseases, and to provide prognostic information regarding disease progression and treatment response.
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+Overall, our research introduces a specialized automated algorithm for fluorescence in situ hybridization (FISH) analysis, specifically designed for pathologists' use. The identification and examination of nuclei in FISH images play a critical role in pathology, particularly in cancer diagnosis and treatment. Manual detection of nuclei in FISH images is a time-consuming, subjective, and error-prone task for pathologists, leading to inconsistencies between observers and potential mistakes. Hence, there is a strong need for automated methods that can accurately detect and segment nuclei in FISH images, enhancing the precision and efficiency of cancer diagnosis.
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
+In details, our approach offers a comprehensive analysis, encompassing both signal and cell detection and their analysis, all completed within seconds for a given image. Traditionally, pathologists would conduct this evaluation using QuPath. However, our prototype application not only delivers equivalent functionality but also presents the case and analysis conveniently on a single screen, offering channel options. This approach is highly beneficial as it also provides insights into signal visibility and cell nucleus boundaries by combining channels. 
+
 <div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
+    *The images displayed below exhibit the outcomes achieved using the prototype interface that I developed.
+</div>
+
+<div class="caption">
 </div>
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.html path="assets/img/cellAnalyze/18875_20_24_qupath.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
-    This image can also have a caption. It's like magic.
+    The display of a case in QuPath.
 </div>
 
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, *bled* for your project, and then... you reveal its glory in the next row of images.
-
-
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.html path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/cellAnalyze/18875_20_24_red_qupath.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.html path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/cellAnalyze/18875_20_24_gr_qupath.png" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/cellAnalyze/18875_20_24_blue_qupath.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
+    The display of channels of the case in QuPath.
+</div>
+
+<div class="caption">
+</div>
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/cellAnalyze/18875_20_24_GTLabels.png" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    The manual labelling of signals and cell nucleus by the pathologist on the case in QuPath.
+</div>
+
+<div class="caption">
+</div>
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/cellAnalyze/18875_20_24_elif_sonuc.png" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    The analysis result of the case on the app.
+</div>
+
+<div class="caption">
+    *I am unable to provide the technical specifics of the project due to the confidentiality requirements.
 </div>
 
 
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
 
-{% raw %}
-```html
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.html path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.html path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-```
-{% endraw %}

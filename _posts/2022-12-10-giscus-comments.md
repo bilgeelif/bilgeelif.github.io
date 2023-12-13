@@ -1,11 +1,9 @@
 ---
 layout: post
-title: a post with giscus comments
-date: 2022-12-10 11:59:00-0400
-description: an example of a blog post with giscus comments
-tags: comments
-categories: sample-posts external-services
-giscus_comments: true
-related_posts: false
+title: UNet+++ 
+date: 2023-01-19 17:39:00
+description: A FULL-SCALE CONNECTED UNET  FOR  MEDICAL IMAGE SEGMENTATION
+redirect: /assets/pdf/Unet3_github.pdf
 ---
-This post shows how to add GISCUS comments.
+
+This post can be found at under the teaching section!
