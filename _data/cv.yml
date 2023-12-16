@@ -6,7 +6,7 @@
     - name: Date of Birth
       value: 3rd July 1996
     - name: Languages
-      value: English, Turkish, German (long time ago 🙂 ) 
+      value: English, Turkish, German (long time ago 🙂) 
 
 - title: Education
   type: time_table
@@ -21,9 +21,9 @@
     #      contents:
     #        - Sub-description 1.
     #        - Sub-description 2.
-    - title: Bachelor in Electric and Electronic Engineering 
+    - title: Bachelor of Science in Electric and Electronic Engineering 
       institution: Bilkent University, Ankara, Turkey
-      year: 2014-2019
+      year: 2015-2020
       #description:
       #  - Description 1.
       #  - Description 2.
@@ -31,52 +31,45 @@
 - title: Experience
   type: time_table
   contents:
-    - title: Computer Vision / Research Engineer 
-      institution: Disun Software Healtcare Systems, Turkey 
+    - title: Computer Vision Research Engineer 
+      institution: Disun Software, Ankara / Turkey 
       year: Mar 2022 - Present  
       description:
-        - Developed a decision support application to assist pathologists in detecting tumor budding.
-        - Developed an automatic HER2 scoring algorithm to assist pathologists in selecting the optimal cancer treatment strategy.
-        - Designed and implemented a computer vision algorithm that automatically maps selected regions in Hematoxylin-Eosin images to corresponding regions in DAPI image.
-        - Designed an algorithm for automatic analysis and visualization system of fluorescence in situ hybridization (FISH) images.
-        - Built up an automatic spectral karyotype analysis
-        #- Designed an automatic detection of antinuclear antibody on immunofluorescence images. 
-        #- All these projects are supported by TUBITAK. I submitted all projects with a desktop application prototype for pathologists to evaluate
-        - title: Designed an automatic detection of antinuclear antibody on immunofluorescence images. 
-          contents:
-            - All these projects are supported by TUBITAK. I submitted all projects with a desktop application prototype for pathologists to evaluate
-
+        - Developed decision support system for detection of cytomegalovirus (CMV) in immunohistochemical stained images and detection of tumor buddings to assist pathologists. Developed automatic HER2 scoring algorithm for optimal cancer treatment strategy selection. Designed algorithms for automatic mapping between hematoxylin-eosin (HE) images to DAPI images, and automatic analysis/visualization of fluorescence in situ hybridization (FISH) images. Built systems for automatic spectral spectral karyotype analysis and automatic detection of antinuclear antibody on immunofluorescence images. The projects have been successfully reported, presented, and integrated into the interface.
+    
     - title: Research Engineer 
-      institution: National Magnetic Resonance Research Center-UMRAM Ankara, Turkey
+      institution: National Magnetic Resonance Research Center (UMRAM), Ankara / Turkey
       year: Feb 2021 - Dec 2022
       description:
-        - To eliminate vendor dependency on MRI sequence execution, work on the design of MRI spectrometer for also worked on the development and reconstruction of MRI sequences via Pulseq’s open-source framework in collaboration with ASELSAN.
-        - Lead the project of FPGA-based Spectrometer for MRI project under the University-Industry Collaboration between Bilkent University and UMRAM, which aims to establish communication between sequences and scanner to provide flexibility in the transmission of waveforms
+        - To eliminate vendor dependency, worked on the design of MRI spectrometer and MRI pulse sequences crafting, collaborated with ASELSAN. Moreover, led the FPGA-based MRI spectrometer project to establish communication between sequences and scanner for flexible transmission of waveforms.
 
     - title: Computer Vision Engineer 
-      institution: Papilon Defense, Inc. Ankara, Turkey
+      institution: Papilon Defense,  Ankara / Turkey
       year:  Jul 2020 - Nov 2020
       description: 
-      - Design of an algorithm to detect license plates in video streams and perform optical character recognition to identify the letters and numbers on license plates for smart parking systems’ automated registration and authentication processes.
+      - Designed algorithms to detect license plates in video streams and perform optical character recognition for automated registration and authentication processes of smart parking systems.
 
     - title: Summer Intern
-      institution: Aselsan, Inc. Ankara, Turkey
+      institution: ASELSAN, Ankara / Turkey
       year: Jun 2018 - Jul 2018
       description:
-      - Offer service through Windows Communication Foundations (WCF) framework in Model-View-Controller (MVC) pattern to create a platform of user login page with the username and password.
+      - Offer service through Windows Communication Foundations (WCF) framework in Model-View-Controller (MVC) pattern to create a platform of user login page.
 
     - title: Summer Intern 
-      institution: KIWI, Ltd. Ankara, Turkey
+      institution: KIWI, Ankara / Turkey
       year: Jul 2017 - Aug 2017
       description:
       - Worked on drone motor communication via FPGA.
 
-# - title: Open Source Projects
-#   type: time_table
-#   contents:
-#     - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-#       year: 2015-now
-#       description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+- title: Skills
+  type: map
+  contents:
+    - name: Programming Languages
+      value: Python, MATLAB
+    - name: Frameworks
+      value: PyTorch, TensorFlow, OpenCV, Scikit-Learn, Scipy, Pandas
+    - name: Tools
+      value: Linux, Docker, Git, Shell, MySQL
 
 - title: Honors and Awards
   type: time_table
