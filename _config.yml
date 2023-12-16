@@ -119,8 +119,8 @@ bing_site_verification:  # out your bing-site-verification ID (Bing Webmaster)
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: elifbilge # blog_name will be displayed in your blog page
-blog_nav_title: teaching # your blog must have a title for it to be displayed in the nav bar
+blog_name: My Blog Page # blog_name will be displayed in your blog page
+blog_nav_title: blog # your blog must have a title for it to be displayed in the nav bar
 blog_description: Presented slides as part of a group debate at work
 permalink: /blog/:year/:title/
 
@@ -167,7 +167,7 @@ collections:
   news:
     defaults:
       layout: post
-    output: true
+    output: false
     permalink: /news/:path/
   projects:
     output: true
