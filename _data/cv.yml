@@ -6,7 +6,7 @@
     - name: Date of Birth
       value: 3rd July 1996
     - name: Languages
-      value: English, Turkish, German (long time ago 🙂) 
+      value: English (C1), German (B1), Turkish (Native)
 
 - title: Education
   type: time_table
@@ -89,7 +89,7 @@
         - Participant , ISMRM & SMRT Annual Meeting & Exhibition
 
 
-- title: Academic Interests
+- title: Research Interests
   type: nested_list
   contents:
     - title: Computer Vision , Machine Learning, Medical Imaging 
