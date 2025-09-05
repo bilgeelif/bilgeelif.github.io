@@ -1,423 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elif Bilge - Computer Vision Research Engineer</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+---
+layout: default
+---
 
-        :root {
-            --primary: #011b54;
-            --secondary: #cb7d46;
-            --accent: #0a6959;
-            --background: #fffffc;
-            --card-bg: #fffffc; /* dacac464*/
-            --card-bg-alt: #e8e8e4; 
-            --dark: #2C3E50;
-            --darker: #1A252F;
-            --light: #FAFAFA;
-            --glass-border: rgba(224, 93, 17, 0); /* 0.4*/
-            --shadow: rgba(138, 162, 158, 0); /* 0.3*/
-            --text-dark: #001748;
-            --text-muted: #546E7A;
-            --text-light: #1982b7;
-        }
+<!-- about.html -->
+      <div class="post">
+        <header class="post-header">
+          <h1 class="post-title">
+           {% if site.title == "blank" -%}<span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }} {{ site.last_name }}{%- else -%}{{ site.title }}{%- endif %}
+          </h1>
+          <p class="desc">{{ page.subtitle }}</p>
+        </header>
 
-        body {
-            background: var(--background);
-            min-height: 100vh;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--text-dark);
-        }
+        <article>
+          {% if page.profile -%}
+          <div class="profile float-{%- if page.profile.align == 'left' -%}left{%- else -%}right{%- endif -%}">
+            {%- if page.profile.image %}
+              {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
 
-        body {
-            background-image: url('cat_doodle1.jpg');
-            background-repeat: no-repeat;
-            background-position: 10% 110%;
-            background-size: 250px auto;
-            background-attachment: fixed;
-        }
+              {% if page.profile.image_circular %}
+                {%- assign profile_image_class = "img-fluid z-depth-1 rounded-circle" -%}
+              {% else %}
+                {%- assign profile_image_class = "img-fluid z-depth-1 rounded" -%}
+              {% endif %}
 
-        .main-container {
-            display: grid;
-            grid-template-columns: 380px 1fr;
-            min-height: 100vh;
-            gap: 2rem;
-            padding: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            position: sticky;
-            top: 2rem;
-            height: fit-content;
-        }
-
-        .profile-card {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 3rem 2.5rem;
-            text-align: center;
-            box-shadow: 0 8px 32px var(--shadow);
-        }
-
-        .profile-img {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            border: 3px solid var(--primary);
-            object-fit: cover;
-            transition: all 0.3s ease;
-            background: linear-gradient(135deg, #ddd, #bbb);
-            box-shadow: 0 4px 16px var(--shadow);
-            margin: 0 auto 1.5rem;
-        }
-
-        .profile-img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 24px var(--shadow);
-        }
-
-        .profile-card h1 {
-            font-size: 3.2rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .profile-card .role {
-            font-size: 1.2rem;
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            min-height: 1.5rem;
-        }
-
-        .profile-card .description {
-            font-size: 1rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-            margin-bottom: 2rem;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            width: 54px;
-            height: 54px;
-            background: var(--card-bg-alt);
-            border: 1px solid var(--glass-border);
-            color: var(--primary);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-            box-shadow: 0 2px 8px var(--shadow);
-        }
-
-        .social-links a:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px var(--shadow);
-        }
-
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .nav-tabs {
-            display: flex;
-            justify-content: flex-start;
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 1rem;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            box-shadow: 0 4px 16px var(--shadow);
-        }
-
-        .nav-tab {
-            padding: 1rem 1.8rem;
-            background: transparent;
-            border: none;
-            border-radius: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .nav-tab.active,
-        .nav-tab:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px var(--shadow);
-        }
-
-        .content-section {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 3rem;
-            display: none;
-            box-shadow: 0 8px 32px var(--shadow);
-        }
-
-        .content-section.active {
-            display: block;
-        }
-
-        .section-title {
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 2.5rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: var(--primary);
-            border-radius: 2px;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 3rem;
-        }
-
-        .about-content {
-            color: var(--text-dark);
-            font-size: 1.1rem;
-            line-height: 1.7;
-        }
-
-        .about-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        /* Highlight row for Medical Imaging, Deep Learning, Collaboration */
-        .highlight-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .highlight-row .highlight-item {
-            flex: 1;
-            background: var(--card-bg-alt);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 0.5rem; /* öncekinden biraz küçük */
-            text-align: center;
-            box-shadow: 0 2px 6px var(--shadow); /* hafif gölge */
-            transition: all 0.3s ease;
-        }
-
-        .highlight-row .highlight-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 3px 12px var(--shadow);
-        }
-
-        .highlight-icon {
-            font-size: 1.5rem; /* biraz küçültüldü */
-            color: var(--primary);
-            margin-bottom: 0.8rem;
-        }
-
-        .highlight-item h4 {
-            font-size: 1rem; /* h3 yerine h4, biraz daha küçük  dacac464*/
-            margin-bottom: 0.4rem;
-        }
-
-        .highlight-item p {
-            font-size: 0.85rem;
-            margin: 0;
-        }
-
-
-        @media (max-width: 1024px) {
-            .main-container {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-                padding: 1.5rem;
-            }
-
-            .sidebar {
-                position: static;
-                order: 1;
-            }
-
-            .main-content {
-                order: 2;
-            }
-
-            .profile-card {
-                padding: 2rem;
-            }
-
-            .profile-card h1 {
-                font-size: 2.6rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .main-container {
-                padding: 1rem;
-            }
-
-            .profile-card h1 {
-                font-size: 2.2rem;
-            }
-
-            .nav-tabs {
-                flex-direction: column;
-            }
-
-            .nav-tab {
-                text-align: center;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .highlight-row {
-                flex-direction: column;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="main-container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="profile-card">
-                <div class="profile-img"></div>
-                <h1>Elif Bilge</h1>
-                <p class="role" id="roleText">Computer Vision Research Engineer</p>
-                <p class="description">Deep Learning & Machine Learning for Medical Image Analysis</p>
-                
-                <div class="social-links">
-                    <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
-                    <a href="#" title="CV"><i class="fas fa-file-pdf"></i></a>
-                </div>
-                <p style="text-align:center; margin-top:0.8rem; font-size:0.9rem; color:var(--text-muted);">
-                Feel free to contact me via email. I'm always open to discussing new opportunities and collaborations!
-                </p>
+              {% include figure.html
+              path=profile_image_path
+              class=profile_image_class
+              alt=page.profile.image -%}
+            {% endif -%}
+            {%- if page.profile.address %}
+            <div class="address">
+              {{ page.profile.address }}
             </div>
-        </div>
+            {%- endif %}
+          </div>
+          {%- endif %}
 
-        <!-- Main content -->
-        <div class="main-content">
-            <div class="nav-tabs">
-                <div class="nav-tab active" onclick="showSection('about')">About</div>
-                <div class="nav-tab" onclick="showSection('experience')">Experience</div>
-                <div class="nav-tab" onclick="showSection('projects')">Projects</div>
-                <div class="nav-tab" onclick="showSection('research')">Research</div>
-                <div class="nav-tab" onclick="showSection('blog')">Blog</div>
+          <div class="clearfix">
+            {{ content }}
+          </div>
+
+          <!-- News -->
+          {% if page.news -%}
+            <h2><a href="{{ '/news/' | relative_url }}" style="color: inherit;">news</a></h2>
+            {%- include news.html %}
+          {%- endif %}
+
+          <!-- Latest posts -->
+          {% if page.latest_posts -%}
+            <h2><a href="{{ '/blog/' | relative_url }}" style="color: inherit;">latest posts</a></h2>
+            {%- include latest_posts.html %}
+          {%- endif %}
+
+          <!-- Selected papers -->
+          {% if page.selected_papers -%}
+            <h2><a href="{{ '/publications/' | relative_url }}" style="color: inherit;">latest reads</a></h2>
+            {%- include selected_papers.html %}
+          {%- endif %}
+
+          <!-- Social -->
+          {%- if page.social %}
+            <div class="social">
+              <div class="contact-icons">
+                {% include social.html %}
+              </div>
+
+              <div class="contact-note">
+                {{ site.contact_note }}
+              </div>
+
             </div>
+          {%- endif %}
+        </article>
 
-            <!-- about -->
-            <div id="about" class="content-section active">
-                <h2 class="section-title">About</h2>
-                <div class="about-content">
-                    <p>I am a <strong style="color: var(--primary);">Computer Vision Research Engineer</strong> with 3–4 years of experience in medical imaging. I collaborate closely with radiologists, pathologists, and academic supervisors to manage end-to-end projects—from literature research and feasibility studies, to benchmarking, model selection, and implementation of research-based architectures for practical applications. My experience includes medical dataset preprocessing, model development and deployment, and managing all stages of projects—from proposal and literature review to benchmarking, model recommendation, and deployment.</p>
-
-                    <div class="highlight-row">
-                        <div class="highlight-item">
-                            <div class="highlight-icon"><i class="fas fa-microscope"></i></div>
-                            <h4>Medical Image Analysis</h4>
-                            <p>Analyzing and interpreting medical dataset</p>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-icon"><i class="fas fa-brain"></i></div>
-                            <h4>Deep Learning</h4>
-                            <p>Designing models and pipelines for research & production</p>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-icon"><i class="fas fa-users"></i></div>
-                            <h4>Collaboration</h4>
-                            <p>Working across multidisciplinary teams</p>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-icon"><i class="fas fa-project-diagram"></i></div>
-                            <h4>End-to-End Project Management</h4>
-                            <p>From design to deployment</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Other sections (experience, Projects, Research, Contact) remain the same -->
-        </div>
-    </div>
-
-    <script>
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('.content-section');
-            sections.forEach(section => section.classList.remove('active'));
-            
-            const tabs = document.querySelectorAll('.nav-tab');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            
-            document.getElementById(sectionId).classList.add('active');
-            event.target.classList.add('active');
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const role = document.getElementById('roleText');
-            const text = role.textContent;
-            role.textContent = '';
-            let i = 0;
-            
-            const typeWriter = () => {
-                if (i < text.length) {
-                    role.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 80);
-                }
-            };
-            
-            setTimeout(typeWriter, 1000);
-        });
-    </script>
-</body>
-</html>
+</div>
