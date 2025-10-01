@@ -1,0 +1,213 @@
+Got it. You want a **CMV project page HTML** styled similarly to your `fish.html` page. I’ve adapted your content into the same structure and style, including modal image functionality for the figures. Here’s a ready-to-use HTML:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMV Module - Elif Bilge</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Same CSS from fish.html with minor adjustments for images/text */
+        * { margin:0; padding:0; box-sizing:border-box; }
+        :root {
+            --primary: #011b54;
+            --secondary: #cb7d46;
+            --accent: #0a6959;
+            --background: #fffffc;
+            --card-bg: #fffffc;
+            --card-bg-alt: #e8e8e4; 
+            --dark: #2C3E50;
+            --darker: #1A252F;
+            --light: #FAFAFA;
+            --glass-border: rgba(224, 93, 17, 0);
+            --shadow: rgba(138, 162, 158, 0.1);
+            --text-dark: #001748;
+            --text-muted: #546E7A;
+            --text-light: #1982b7;
+        }
+        body { background: var(--background); min-height:100vh; font-family:'Inter', sans-serif; color: var(--text-dark);}
+        body { background-image:url('cat_doodle1.jpg'); background-repeat:no-repeat; background-position:10% 110%; background-size:250px auto; background-attachment:fixed;}
+        .main-container { display:grid; grid-template-columns:380px 1fr; min-height:100vh; gap:2rem; padding:2rem; max-width:1400px; margin:0 auto;}
+        .sidebar { display:flex; flex-direction:column; gap:2rem; position:sticky; top:2rem; height:fit-content;}
+        .profile-card { background: var(--card-bg); border:1px solid var(--glass-border); border-radius:24px; padding:3rem 2.5rem; text-align:center; box-shadow:0 8px 32px var(--shadow);}
+        .profile-img { width:140px; height:140px; border-radius:50%; border:3px solid var(--primary); object-fit:cover; transition:all 0.3s ease; background:linear-gradient(135deg,#ddd,#bbb); box-shadow:0 4px 16px var(--shadow); margin:0 auto 1.5rem;}
+        .profile-img:hover { transform:scale(1.05); box-shadow:0 8px 24px var(--shadow);}
+        .profile-card h1 { font-size:3.2rem; font-weight:700; color:var(--text-dark); margin-bottom:0.5rem; letter-spacing:-0.02em;}
+        .profile-card .role { font-size:1.2rem; color:var(--primary); font-weight:600; margin-bottom:1rem; min-height:1.5rem;}
+        .profile-card .description { font-size:1rem; color:var(--text-muted); line-height:1.5; margin-bottom:2rem;}
+        .social-links { display:flex; justify-content:center; gap:1rem; }
+        .social-links a { width:54px; height:54px; background:var(--card-bg-alt); border:1px solid var(--glass-border); color:var(--primary); border-radius:16px; display:flex; align-items:center; justify-content:center; text-decoration:none; transition:all 0.3s ease; font-size:1.2rem; box-shadow:0 2px 8px var(--shadow);}
+        .social-links a:hover { background:var(--primary); color:white; transform:translateY(-2px); box-shadow:0 4px 16px var(--shadow);}
+        .main-content { display:flex; flex-direction:column; gap:2rem;}
+        .nav-tabs { display:flex; justify-content:flex-start; background:var(--card-bg); border:1px solid var(--glass-border); border-radius:20px; padding:1rem; gap:0.5rem; flex-wrap:wrap; box-shadow:0 4px 16px var(--shadow);}
+        .nav-tab { padding:1rem 1.8rem; background:transparent; border:none; border-radius:14px; cursor:pointer; transition:all 0.3s ease; font-weight:600; color:var(--text-muted); font-size:0.95rem; text-decoration:none; display:inline-block;}
+        .nav-tab:hover { background:var(--primary); color:white; transform:translateY(-1px); box-shadow:0 4px 12px var(--shadow);}
+        .content-section { background:var(--card-bg); border:1px solid var(--glass-border); border-radius:24px; padding:3rem; box-shadow:0 8px 32px var(--shadow);}
+        .back-button { display:inline-flex; align-items:center; gap:0.5rem; padding:0.8rem 1.5rem; background:var(--card-bg-alt); border:1px solid var(--glass-border); border-radius:12px; color:var(--primary); text-decoration:none; font-weight:500; transition:all 0.3s ease; margin-bottom:2rem;}
+        .back-button:hover { background:var(--primary); color:white; transform:translateY(-2px); box-shadow:0 4px 12px var(--shadow);}
+        .project-header { text-align:center; margin-bottom:3rem;}
+        .project-title { font-size:3rem; font-weight:700; color:var(--text-dark); margin-bottom:1rem;}
+        .project-subtitle { font-size:1.3rem; color:var(--text-muted); margin-bottom:2rem;}
+        .project-technologies { display:flex; justify-content:center; flex-wrap:wrap; gap:0.8rem; margin-bottom:2rem;}
+        .tech-tag { background:var(--primary); color:white; padding:0.5rem 1rem; border-radius:12px; font-size:0.9rem; font-weight:500;}
+        .project-content { max-width:100%;}
+        .content-text { font-size:1.1rem; line-height:1.8; color:var(--text-dark); margin-bottom:2rem;}
+        .content-text p { margin-bottom:1.5rem;}
+        .content-text strong { color:var(--primary);}
+        .images-section { margin:3rem 0;}
+        .section-subtitle { font-size:1.5rem; font-weight:600; color:var(--text-dark); margin-bottom:2rem; text-align:center;}
+        .image-container { background: var(--card-bg-alt); border:1px solid var(--glass-border); border-radius:16px; overflow:hidden; margin-bottom:2rem; box-shadow:0 4px 16px var(--shadow); cursor:pointer; transition:all 0.3s ease;}
+        .image-container:hover { transform: translateY(-2px); box-shadow:0 8px 24px var(--shadow);}
+        .image-caption { padding:1rem; font-size:1rem; color:var(--text-muted); font-style:italic; text-align:center; line-height:1.5;}
+        .image-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin:2rem 0;}
+        .image-grid img { width:100%; height:250px; object-fit:cover; border-radius:16px;}
+        .modal { display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background-color:rgba(0,0,0,0.9); overflow:hidden;}
+        .modal-content { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); max-width:90vw; max-height:90vh; text-align:center;}
+        .modal-image { max-width:100%; max-height:85vh; width:auto; height:auto; border-radius:8px; box-shadow:0 8px 32px rgba(0,0,0,0.5);}
+        .modal-caption { color:white; text-align:center; margin-top:1rem; font-size:1.1rem; background:rgba(0,0,0,0.7); padding:0.8rem 1.5rem; border-radius:8px; backdrop-filter:blur(10px); display:inline-block;}
+        .close { position:absolute; top:20px; right:30px; color:white; font-size:40px; font-weight:bold; cursor:pointer; z-index:10000; background:rgba(0,0,0,0.7); width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:all 0.3s ease;}
+        .close:hover { background:rgba(255,255,255,0.2);}
+        .disclaimer { background: var(--card-bg-alt); border:1px solid var(--glass-border); border-radius:16px; padding:2rem; margin-top:3rem; text-align:center; font-style:italic; color:var(--text-muted);}
+        @media(max-width:1024px){.main-container{grid-template-columns:1fr; gap:1.5rem; padding:1.5rem;} .sidebar{position:static; order:1;} .main-content{order:2;} .profile-card{padding:2rem;} .profile-card h1{font-size:2.6rem;} .project-title{font-size:2.2rem;}}
+        @media(max-width:768px){.main-container{padding:1rem;} .profile-card h1{font-size:2.2rem;} .nav-tabs{flex-direction:column;} .nav-tab{text-align:center;} .project-title{font-size:1.8rem;} .project-subtitle{font-size:1.1rem;} .image-grid{grid-template-columns:1fr;}}
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="profile-card">
+            <img src="others/cv_photo.jpeg" class="profile-img">
+            <h1>Elif Bilge</h1>
+            <p class="role">Computer Vision Research Engineer</p>
+            <p class="description">Deep Learning & Machine Learning for Medical Image Analysis</p>
+            <div class="social-links">
+                <a href="https://github.com/bilgeelif" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/elif-bilge" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:bbilge.elif@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="others/ElifBilgeGok_resume_30Sep2025.pdf" title="CV"><i class="fas fa-file-pdf"></i></a>
+            </div>
+            <p style="text-align:center; margin-top:0.8rem; font-size:0.9rem; color:var(--text-muted);">
+                Feel free to contact me via email. I'm always open to discussing new opportunities and collaborations!
+            </p>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <div class="nav-tabs">
+            <a href="index.html" class="nav-tab">About</a>
+            <a href="experience.html" class="nav-tab">Experience</a>
+            <a href="projects.html" class="nav-tab">Projects</a>
+        </div>
+
+        <div class="content-section">
+            <a href="projects.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+
+            <div class="project-header">
+                <h1 class="project-title">CMV Detection Module</h1>
+                <p class="project-subtitle">AI-Powered Cytomegalovirus Detection in IHC Images</p>
+                <div class="project-technologies">
+                    <span class="tech-tag">Computer Vision</span>
+                    <span class="tech-tag">Deep Learning</span>
+                    <span class="tech-tag">Medical Imaging</span>
+                    <span class="tech-tag">IHC Analysis</span>
+                    <span class="tech-tag">CMV Detection</span>
+                </div>
+            </div>
+
+            <div class="project-content">
+                <div class="content-text">
+                    <p>Developed an <strong>AI-powered decision support algorithm</strong> for the detection of Cytomegalovirus (CMV) in immunohistochemical stained images. This module is now ready to be used with the Sectra PACS system, offering a comprehensive solution for the detection of cells with CMV inclusions.</p>
+                    <p>Cases uploaded to the Sectra IDS7 workstation can be navigated via the home page. Selecting a case opens a new window to navigate through all glass images belonging to the selected case. A Disun icon sends the CMV-labelled image to the CMV detection module. The software processes the CMV-tagged image and marks each detected CMV nucleus in red for visibility.</p>
+                    <p>Pathologists simply need to ensure the slide label includes 'CMV' or 'cytomegalovirus'; the software handles all subsequent steps automatically.</p>
+                </div>
+
+                <div class="images-section">
+                    <h2 class="section-subtitle">Interface Demonstration</h2>
+
+                    <div class="image-container" onclick="openModal('cmv_fig1.png', 'All cases uploaded to the Sectra PACS interface')">
+                        <img src="cmv_figures/cmv_fig1.png" alt="Figure 1" style="width:100%; height:400px; object-fit:cover; border-radius:16px; cursor:pointer;">
+                        <div class="image-caption">Figure 1: All cases uploaded to the Sectra PACS interface. <em>Click to view larger.</em></div>
+                    </div>
+
+                    <div class="image-container" onclick="openModal('cmv_fig2.png', 'Glass images navigated, CMV labelled image sent to module')">
+                        <img src="cmv_figures/cmv_fig2.png" alt="Figure 2" style="width:100%; height:400px; object-fit:cover; border-radius:16px; cursor:pointer;">
+                        <div class="image-caption">Figure 2: Glass images of the selected case and CMV detection. <em>Click to view larger.</em></div>
+                    </div>
+
+                    <div class="image-container" onclick="openModal('ccmv_fig3.png', 'Pathologists’ notes in result window')">
+                        <img src="cmv_figures/cmv_fig3.png" alt="Figure 3" style="width:100%; height:400px; object-fit:cover; border-radius:16px; cursor:pointer;">
+                        <div class="image-caption">Figure 3: Example of pathologists’ notes in the result window. <em>Click to view larger.</em></div>
+                    </div>
+
+                    <div class="content-text">
+                        <p><strong>Performance Metrics of Disun Software’s CMV Detection Model:</strong></p>
+                        <table style="width:100%; border-collapse:collapse; text-align:center; margin-bottom:2rem;">
+                            <thead>
+                                <tr style="background:var(--primary); color:white;">
+                                    <th style="padding:0.8rem;">Accuracy</th>
+                                    <th style="padding:0.8rem;">F1 Measure</th>
+                                    <th style="padding:0.8rem;">Precision</th>
+                                    <th style="padding:0.8rem;">Recall</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="background:var(--card-bg-alt); color:var(--text-dark);">
+                                    <td style="padding:0.8rem;">0.9593</td>
+                                    <td style="padding:0.8rem;">0.8952</td>
+                                    <td style="padding:0.8rem;">0.8261</td>
+                                    <td style="padding:0.8rem;">0.9771</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>The collaboration between Sectra Pathology and Disun Software combines two essential components: Disun's model reduces pathologist workload and its seamless integration into Sectra PACS ensures user-friendly access to CMV detection results.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Image Viewing -->
+<div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content">
+        <img id="modalImage" class="modal-image">
+        <div id="modalCaption" class="modal-caption"></div>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    const closeBtn = document.getElementsByClassName('close')[0];
+
+    function openModal(imageSrc, caption) {
+        modal.style.display = 'block';
+        modalImg.src = imageSrc;
+        modalCaption.textContent = caption;
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    closeBtn.onclick = closeModal;
+    modal.onclick = function(event) { if(event.target === modal) closeModal(); }
+    document.addEventListener('keydown', function(event){ if(event.key==='Escape' && modal.style.display==='block'){ closeModal(); } });
+</script>
+</body>
+</html>
+```
+
+---
+
+✅ **Notes:**
+
+1. Replace the placeholder images (\`cm

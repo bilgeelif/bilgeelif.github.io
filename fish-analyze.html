@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FISH Analyze - Elif Bilge</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #011b54;
+            --secondary: #cb7d46;
+            --accent: #0a6959;
+            --background: #fffffc;
+            --card-bg: #fffffc;
+            --card-bg-alt: #e8e8e4; 
+            --dark: #2C3E50;
+            --darker: #1A252F;
+            --light: #FAFAFA;
+            --glass-border: rgba(224, 93, 17, 0);
+            --shadow: rgba(138, 162, 158, 0.1);
+            --text-dark: #001748;
+            --text-muted: #546E7A;
+            --text-light: #1982b7;
+        }
+
+        body {
+            background: var(--background);
+            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-dark);
+        }
+
+        body {
+            background-image: url('cat_doodle1.jpg');
+            background-repeat: no-repeat;
+            background-position: 10% 110%;
+            background-size: 250px auto;
+            background-attachment: fixed;
+        }
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            min-height: 100vh;
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: sticky;
+            top: 2rem;
+            height: fit-content;
+        }
+
+        .profile-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            box-shadow: 0 8px 32px var(--shadow);
+        }
+
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            object-fit: cover;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #ddd, #bbb);
+            box-shadow: 0 4px 16px var(--shadow);
+            margin: 0 auto 1.5rem;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 24px var(--shadow);
+        }
+
+        .profile-card h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .profile-card .role {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            min-height: 1.5rem;
+        }
+
+        .profile-card .description {
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 54px;
+            height: 54px;
+            background: var(--card-bg-alt);
+            border: 1px solid var(--glass-border);
+            color: var(--primary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px var(--shadow);
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: flex-start;
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 1rem;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 16px var(--shadow);
+        }
+
+        .nav-tab {
+            padding: 1rem 1.8rem;
+            background: transparent;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-tab:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .content-section {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px var(--shadow);
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--card-bg-alt);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .back-button:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .project-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .project-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .project-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .project-technologies {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-tag {
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .project-content {
+            max-width: 100%;
+        }
+
+        .content-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+        }
+
+        .content-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .content-text strong {
+            color: var(--primary);
+        }
+
+        .images-section {
+            margin: 3rem 0;
+        }
+
+        .section-subtitle {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .image-container {
+            background: var(--card-bg-alt);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 16px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .image-container:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--shadow);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+                        linear-gradient(-45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+                        linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.1) 75%),
+                        linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.1) 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            opacity: 0.3;
+        }
+
+        .image-caption {
+            padding: 1.5rem;
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-style: italic;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .image-grid .image-container {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .image-grid .image-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 24px var(--shadow);
+        }
+
+        .image-grid img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        /* Modal Styles - Simplified and Fixed */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: hidden;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90vw;
+            max-height: 90vh;
+            text-align: center;
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 85vh;
+            width: auto;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-caption {
+            color: white;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            display: inline-block;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10000;
+            background: rgba(0, 0, 0, 0.7);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .disclaimer {
+            background: var(--card-bg-alt);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 1.5rem;
+            }
+
+            .sidebar {
+                position: static;
+                order: 1;
+            }
+
+            .main-content {
+                order: 2;
+            }
+
+            .profile-card {
+                padding: 2rem;
+            }
+
+            .profile-card h1 {
+                font-size: 2.6rem;
+            }
+
+            .project-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 1rem;
+            }
+
+            .profile-card h1 {
+                font-size: 2.2rem;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .nav-tab {
+                text-align: center;
+            }
+
+            .project-title {
+                font-size: 1.8rem;
+            }
+
+            .project-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="profile-card">
+                <img src="others/cv_photo.jpeg" class="profile-img">
+                <h1>Elif Bilge</h1>
+                <p class="role">Computer Vision Research Engineer</p>
+                <p class="description">Deep Learning & Machine Learning for Medical Image Analysis</p>
+                
+                <div class="social-links">
+                    <a href="https://github.com/bilgeelif" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/elif-bilge" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:bbilge.elif@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="others/ElifBilgeGok_resume_30Sep2025.pdf" title="CV"><i class="fas fa-file-pdf"></i></a>
+                </div>
+                <p style="text-align:center; margin-top:0.8rem; font-size:0.9rem; color:var(--text-muted);">
+                Feel free to contact me via email. I'm always open to discussing new opportunities and collaborations!
+                </p>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="main-content">
+            <div class="nav-tabs">
+                <a href="index.html" class="nav-tab">About</a>
+                <a href="experience.html" class="nav-tab">Experience</a>
+                <a href="projects.html" class="nav-tab">Projects</a>
+            </div>
+
+            <div class="content-section">
+                <a href="projects.html" class="back-button">
+                    <i class="fas fa-arrow-left"></i> Back to Projects
+                </a>
+
+                <div class="project-header">
+                    <h1 class="project-title">FISH Analyze</h1>
+                    <p class="project-subtitle">Cell and Signal Analysis on FISH Images</p>
+                    <div class="project-technologies">
+                        <span class="tech-tag">Computer Vision</span>
+                        <span class="tech-tag">Image Processing</span>
+                        <span class="tech-tag">FISH Analysis</span>
+                        <span class="tech-tag">Cell Segmentation</span>
+                        <span class="tech-tag">Medical Imaging</span>
+                    </div>
+                </div>
+
+                <div class="project-content">
+                    <div class="content-text">
+                        <p>The analysis of nuclei on <strong>fluorescent in situ hybridization (FISH)</strong> is an important technique used in pathology to identify and characterize genetic abnormalities and mutations in cells. This technique provides a way to visualize specific DNA sequences and chromosomal regions within the nuclei of cells, allowing for the detection of genetic changes that may be associated with diseases such as cancer.</p>
+
+                        <p>FISH analysis can be used to detect a wide range of genetic abnormalities, including chromosomal translocations, deletions, and amplifications, as well as gene fusions and mutations. By detecting these genetic changes, FISH analysis can help pathologists to accurately diagnose and classify various types of cancers and other diseases, and to provide prognostic information regarding disease progression and treatment response.</p>
+
+                        <p>Overall, our research introduces a <strong>specialized automated algorithm</strong> for fluorescence in situ hybridization (FISH) analysis, specifically designed for pathologists' use. The identification and examination of nuclei in FISH images play a critical role in pathology, particularly in cancer diagnosis and treatment. Manual detection of nuclei in FISH images is a time-consuming, subjective, and error-prone task for pathologists, leading to inconsistencies between observers and potential mistakes. Hence, there is a strong need for automated methods that can accurately detect and segment nuclei in FISH images, enhancing the precision and efficiency of cancer diagnosis.</p>
+
+                        <p>In details, our approach offers a <strong>comprehensive analysis</strong>, encompassing both signal and cell detection and their analysis, all completed within seconds for a given image. Traditionally, pathologists would conduct this evaluation using QuPath. However, our prototype application not only delivers equivalent functionality but also presents the case and analysis conveniently on a single screen, offering channel options. This approach is highly beneficial as it also provides insights into signal visibility and cell nucleus boundaries by combining channels.</p>
+                    </div>
+
+                    <div class="images-section">
+                        <h2 class="section-subtitle">Results from Prototype Interface</h2>
+                        <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem; font-style: italic;">
+                            *The images displayed below exhibit the outcomes achieved using the prototype interface that I developed.
+                        </p>
+
+                        <!-- QuPath Display -->
+                        <div class="image-container" onclick="openModal('cellAnalyze/18875_20_24_qupath.png', 'The display of a case in QuPath')">
+                            <img src="cellAnalyze/18875_20_24_qupath.png" alt="QuPath Case Display" style="width: 100%; height: 400px; object-fit: cover; border-radius: 16px; cursor: pointer;">
+                            <div class="image-caption">
+                                The display of a case in QuPath. <em>Click to view larger.</em>
+                            </div>
+                        </div>
+
+                        <!-- Channel Images Grid -->
+                        <div class="image-grid">
+                            <div class="image-container" onclick="openModal('cellAnalyze/18875_20_24_red_qupath.png', 'Red channel visualization in QuPath')">
+                                <img src="cellAnalyze/18875_20_24_red_qupath.png" alt="Red Channel">
+                                <div class="image-caption">Red Channel</div>
+                            </div>
+
+                            <div class="image-container" onclick="openModal('cellAnalyze/18875_20_24_gr_qupath.png', 'Green channel visualization in QuPath')">
+                                <img src="cellAnalyze/18875_20_24_gr_qupath.png" alt="Green Channel">
+                                <div class="image-caption">Green Channel</div>
+                            </div>
+
+                            <div class="image-container" onclick="openModal('cellAnalyze/18875_20_24_blue_qupath.png', 'Blue channel visualization in QuPath')">
+                                <img src="cellAnalyze/18875_20_24_blue_qupath.png" alt="Blue Channel">
+                                <div class="image-caption">Blue Channel</div>
+                            </div>
+                        </div>
+
+                        <div class="image-caption" style="text-align: center; margin-bottom: 2rem; font-weight: 500;">
+                            The display of channels of the case in QuPath. <em>Click on any image to view larger.</em>
+                        </div>
+
+                        <!-- Manual Labeling -->
+                        <div class="image-container" onclick="openModal('cellAnalyze/18875_20_24_GTLabels.png', 'The manual labelling of signals and cell nucleus by the pathologist on the case in QuPath')">
+                            <img src="cellAnalyze/18875_20_24_GTLabels.png" alt="Manual Labels" style="width: 100%; height: 400px; object-fit: cover; border-radius: 16px; cursor: pointer;">
+                            <div class="image-caption">
+                                The manual labelling of signals and cell nucleus by the pathologist on the case in QuPath. <em>Click to view larger.</em>
+                            </div>
+                        </div>
+
+                        <!-- App Results -->
+                        <div class="image-container" onclick="openModal('cellAnalyze/18875_20_24_elif_sonuc.png', 'The analysis result of the case on the app')">
+                            <img src="cellAnalyze/18875_20_24_elif_sonuc.png" alt="Analysis Results" style="width: 100%; height: 400px; object-fit: cover; border-radius: 16px; cursor: pointer;">
+                            <div class="image-caption">
+                                The analysis result of the case on the app. <em>Click to view larger.</em>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Image Viewing -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" class="modal-image">
+            <div id="modalCaption" class="modal-caption"></div>
+        </div>
+    </div>
+
+    <script>
+        // Get modal elements
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        const closeBtn = document.getElementsByClassName('close')[0];
+
+        // Open modal function
+        function openModal(imageSrc, caption) {
+            console.log('Opening modal with:', imageSrc); // Debug
+            modal.style.display = 'block';
+            modalImg.src = imageSrc;
+            modalCaption.textContent = caption;
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal function
+        function closeModal() {
+            console.log('Closing modal'); // Debug
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close button click
+        closeBtn.onclick = closeModal;
+
+        // Click outside modal to close
+        modal.onclick = function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Escape key to close
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modal.style.display === 'block') {
+                closeModal();
+            }
+        });
+
+        // Test function - you can remove this later
+        function testModal() {
+            openModal('https://via.placeholder.com/800x600/0066cc/white?text=Test+Image', 'Test Image');
+        }
+    </script>
+</body>
+</html>

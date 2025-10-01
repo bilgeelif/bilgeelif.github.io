@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Elif Bilge</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #011b54;
+            --secondary: #cb7d46;
+            --accent: #0a6959;
+            --background: #fffffc;
+            --card-bg: #fffffc;
+            --card-bg-alt: #e8e8e4; 
+            --dark: #2C3E50;
+            --darker: #1A252F;
+            --light: #FAFAFA;
+            --glass-border: rgba(224, 93, 17, 0);
+            --shadow: rgba(138, 162, 158, 0.1);
+            --text-dark: #001748;
+            --text-muted: #546E7A;
+            --text-light: #1982b7;
+        }
+
+        body {
+            background: var(--background);
+            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-dark);
+        }
+
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            min-height: 100vh;
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: sticky;
+            top: 2rem;
+            height: fit-content;
+        }
+
+        .profile-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            box-shadow: 0 8px 32px var(--shadow);
+        }
+
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            object-fit: cover;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #ddd, #bbb);
+            box-shadow: 0 4px 16px var(--shadow);
+            margin: 0 auto 1.5rem;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 24px var(--shadow);
+        }
+
+        .profile-card h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .profile-card .role {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            min-height: 1.5rem;
+        }
+
+        .profile-card .description {
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 54px;
+            height: 54px;
+            background: var(--card-bg-alt);
+            border: 1px solid var(--glass-border);
+            color: var(--primary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px var(--shadow);
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: flex-start;
+            background: var(--card-bg);
+            background: linear-gradient(90deg, #e6e2ec, #0f0583);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 1rem;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 16px var(--shadow);
+        }
+
+        .nav-tab {
+            padding: 1rem 1.8rem;
+            background: transparent;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-tab.active,
+        .nav-tab:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .content-section {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px var(--shadow);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 2.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* Projects specific styles */
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--card-bg-alt);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .project-card {
+            background: var(--card-bg-alt);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 6px var(--shadow);
+            position: relative;
+            opacity: 1;
+            transform: scale(1);
+            height: fit-content;
+        }
+
+        .project-card.hidden {
+            opacity: 0;
+            transform: scale(0.95);
+            pointer-events: none;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px) scale(1);
+            box-shadow: 0 8px 32px var(--shadow);
+        }
+
+        .project-card.hidden:hover {
+            transform: scale(0.95);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 170px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .project-image .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-image:hover .overlay {
+            opacity: 1;
+        }
+
+        .project-image .overlay i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .project-image.pathology {
+            background: linear-gradient(135deg, #2E7D32, #4CAF50);
+        }
+
+        .project-image.cytogenetics {
+            background: linear-gradient(135deg, #1565C0, #2196F3);
+        }
+
+        .project-image.immunofluorescence {
+            background: linear-gradient(135deg, #7B1FA2, #9C27B0);
+        }
+
+        .project-image.image-matching {
+            background: linear-gradient(135deg, #E65100, #FF9800);
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+                        linear-gradient(-45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+                        linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.1) 75%),
+                        linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.1) 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            opacity: 0.3;
+        }
+
+        .project-content {
+            padding: 0.8rem;
+        }
+
+        .project-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.4rem;
+            line-height: 1.2;
+        }
+
+        .project-description {
+            color: var(--text-muted);
+            line-height: 1.3;
+            margin-bottom: 0.6rem;
+            font-size: 0.75rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .project-technologies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.2rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .tech-tag {
+            background: var(--primary);
+            color: white;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.6rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .project-link {
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.7rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .project-link.primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .project-link.secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .project-link.primary:hover {
+            background: var(--accent);
+        }
+
+        .project-link.secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 1.5rem;
+            }
+
+            .sidebar {
+                position: static;
+                order: 1;
+            }
+
+            .main-content {
+                order: 2;
+            }
+
+            .profile-card {
+                padding: 2rem;
+            }
+
+            .profile-card h1 {
+                font-size: 2.6rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 1rem;
+            }
+
+            .profile-card h1 {
+                font-size: 2.2rem;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .nav-tab {
+                text-align: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-filter {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="profile-card">
+                <img src="others/cv_photo.jpeg" class="profile-img">
+                <h1>Elif Bilge</h1>
+                <p class="role">Computer Vision Research Engineer</p>
+                <p class="description">Deep Learning & Machine Learning for Medical Image Analysis</p>
+                
+                <div class="social-links">
+                    <a href="https://github.com/bilgeelif" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/elif-bilge" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:bbilge.elif@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="others/ElifBilgeGok_resume_30Sep2025.pdf" title="CV"><i class="fas fa-file-pdf"></i></a>
+                </div>
+                <p style="text-align:center; margin-top:0.8rem; font-size:0.9rem; color:var(--text-muted);">
+                Feel free to contact me via email. I'm always open to discussing new opportunities and collaborations!
+                </p>
+                <img src="others/esquie_2.png" alt="cat doodle" style="display:block; margin:auto auto 0; width:250px; height:auto;">
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="main-content">
+            <div class="nav-tabs">
+                <a href="index.html" class="nav-tab">About</a>
+                <a href="experience.html" class="nav-tab">Experience</a>
+                <a href="projects.html" class="nav-tab active">Projects</a>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">Projects</h2>
+                
+                <!-- Category Filter -->
+                <div class="category-filter">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="Radiology">Radiology</button>
+                    <button class="filter-btn" data-filter="Segmentation">Segmentation</button>
+                    <button class="filter-btn" data-filter="Detection">Detection</button>
+                    <button class="filter-btn" data-filter="Classification">Classification</button>
+                    <button class="filter-btn" data-filter="Pathology">Pathology</button>
+                </div>
+
+                <!-- Projects Grid - 2x3 Layout -->
+                <div class="projects-grid">
+                    <!-- First Row -->
+                    <!-- 1. Mediastinal Lymph Node Analysis -->
+                    <div class="project-card" data-category="Radiology Segmentation Classification">
+                        <div class="project-image has-image" onclick="window.location.href='mln.html'" style="cursor: pointer;">
+                            <img src="mln_figures/5658_sg.png" alt="Mediastinal Lymph Node Analysis">
+                            <div class="overlay">
+                                <i class="fas fa-lungs"></i>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title" onclick="window.location.href='mln.html'" style="cursor: pointer;">Mediastinal Lymph Node Analysis</h3>
+                            <p class="project-description">MLN Detections & Station Classification </p>
+                            <div class="project-technologies">
+                                <span class="tech-tag">CT</span>
+                                <span class="tech-tag">3D segmentation</span>
+                                <span class="tech-tag">Multi-Label Classification</span>
+                                <span class="tech-tag">Feature Engineering</span>
+                                <span class="tech-tag">IASLC</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="mln.html" class="project-link secondary">
+                                    <i class="fas fa-info-circle"></i> Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Tumor Budding -->
+                    <div class="project-card" data-category="Pathology Detection">
+                        <div class="project-image has-image" onclick="window.location.href='tumor-budding.html'" style="cursor: pointer;">
+                            <img src="tumorBudding_figures/tumorBud_cover.png" alt="Tumor Budding">
+                            <div class="overlay">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title" onclick="window.location.href='tumor-budding.html'" style="cursor: pointer;">Tumor Budding Detection</h3>
+                            <p class="project-description"> Tumor budding detection in Whole Slide Imaging</p>
+                            <div class="project-technologies">
+                                <span class="tech-tag">WSI Analysis</span>
+                                <span class="tech-tag">Detection</span>
+                                <span class="tech-tag">Context-aware architecture</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="tumor-budding.html" class="project-link secondary">
+                                    <i class="fas fa-info-circle"></i> Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. CMV -->
+                    <div class="project-card" data-category="Pathology Detection Image-processing">
+                        <div class="project-image has-image" onclick="window.location.href='cmvAnalysis.html'" style="cursor: pointer;">
+                            <img src="cmv_figures/cmv_cover1.png" alt="CMV Analysis">
+                            <div class="overlay">
+                                <i class="fas fa-virus"></i>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title" onclick="window.location.href='cmvAnalysis.html'" style="cursor: pointer;">Cytomegalovirus Detection </h3>
+                            <p class="project-description">CMV detection and analysis</p>
+                            <div class="project-technologies">
+                                <span class="tech-tag">Detection</span>
+                                <span class="tech-tag">Clinical workflow integration</span>
+                                <span class="tech-tag">Color deconvolution</span>
+                                <span class="tech-tag">Pathology</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="cmvAnalysis.html" class="project-link secondary">
+                                    <i class="fas fa-info-circle"></i> Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Second Row -->
+                    <!-- 4. FISH Analyze -->
+                    <div class="project-card" data-category="Pathology segmentation Image-processing">
+                        <div class="project-image has-image" onclick="window.location.href='fish-analyze.html'" style="cursor: pointer;">
+                            <img src="cellAnalyze/cellCover.png" alt="FISH Analyze">
+                            <div class="overlay">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title" onclick="window.location.href='fish-analyze.html'" style="cursor: pointer;">luorescence in Situ Hybridization Analysis</h3>
+                            <p class="project-description"> FISH cell detection and signal analysis </p>
+                            <div class="project-technologies">
+                                <span class="tech-tag">Cell Segmentation-detection</span>
+                                <span class="tech-tag">Channelwise analysis</span>
+                                <span class="tech-tag">Transfer learning</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="fish-analyze.html" class="project-link secondary">
+                                    <i class="fas fa-info-circle"></i> Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. HE2DAPI -->
+                    <div class="project-card" data-category="Pathology Image-processing">
+                        <div class="project-image has-image" onclick="window.location.href='he2dapi.html'" style="cursor: pointer;">
+                            <img src="he2dapi_figures/he2dapi_cover.png" alt="HE2DAPI Mapping">
+                            <div class="overlay">
+                                <i class="fas fa-arrows-alt"></i>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title" onclick="window.location.href='he2dapi'" style="cursor: pointer;"> H&E to DAPI Mapping</h3>
+                            <p class="project-description">Mapping regions using SIFT algorithm for pathologists </p>
+                            <div class="project-technologies">
+                                <span class="tech-tag">SIFT Algorithm</span>
+                                <span class="tech-tag">Color deconvolution</span>
+                                <span class="tech-tag">Image processing</span>
+                                <span class="tech-tag">H&E Staining</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="he2dapi.html" class="project-link secondary">
+                                    <i class="fas fa-info-circle"></i> Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. HER2 Scoring -->
+                    <div class="project-card" data-category="pathology classification">
+                        <div class="project-image has-image" onclick="window.location.href='her2scoring.html'" style="cursor: pointer;">
+                            <img src="her2_figures/her2_cover.png" alt="HER2 Scoring">
+                            <div class="overlay">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title" onclick="window.location.href='her2scoring'" style="cursor: pointer;">HER2 Scoring</h3>
+                            <p class="project-description"> Breast cancer diagnosis with four-class categorization.</p>
+                            <div class="project-technologies">
+                                <span class="tech-tag">IHC Analysis</span>
+                                <span class="tech-tag">Breast Cancer</span>
+                                <span class="tech-tag">Classification</span>
+                                <span class="tech-tag">Pathology</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="her2scoring.html" class="project-link secondary">
+                                    <i class="fas fa-info-circle"></i> Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+
+                    const filter = this.dataset.filter;
+
+                    projectCards.forEach(card => {
+                        const categories = card.dataset.category.split(' '); // Boşlukla ayır
+                        if (filter === 'all' || categories.includes(filter)) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+
+                });
+            });
+        });
+    </script>
+</body>
+</html>

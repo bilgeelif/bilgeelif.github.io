@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mediasten Project - Elif Bilge</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #011b54;
+            --secondary: #cb7d46;
+            --accent: #0a6959;
+            --background: #fffffc;
+            --card-bg: #fffffc;
+            --card-bg-alt: #e8e8e4; 
+            --dark: #2C3E50;
+            --darker: #1A252F;
+            --light: #FAFAFA;
+            --glass-border: rgba(224, 93, 17, 0);
+            --shadow: rgba(138, 162, 158, 0);
+            --text-dark: #001748;
+            --text-muted: #546E7A;
+            --text-light: #1982b7;
+        }
+        body {
+            background: var(--background);
+            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-dark);
+            background-image: url('cat_doodle1.jpg');
+            background-repeat: no-repeat;
+            background-position: 10% 110%;
+            background-size: 250px auto;
+            background-attachment: fixed;
+        }
+        .main-container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .back-button {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 1rem 1.5rem; background: var(--card-bg);
+            border: 1px solid var(--glass-border); border-radius: 12px;
+            color: var(--primary); text-decoration: none; font-weight: 600;
+            margin-bottom: 2rem; transition: all 0.3s ease;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+        .back-button:hover {
+            background: var(--primary); color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px var(--shadow);
+        }
+        .project-header {
+            background: var(--card-bg); border: 1px solid var(--glass-border);
+            border-radius: 24px; padding: 3rem; margin-bottom: 2rem;
+            text-align: center; box-shadow: 0 8px 32px var(--shadow);
+        }
+        .project-title { font-size: 3rem; font-weight: 700; color: var(--text-dark); margin-bottom: 1rem; letter-spacing: -0.02em; }
+        .project-subtitle { font-size: 1.3rem; color: var(--primary); font-weight: 600; margin-bottom: 1.5rem; }
+        .project-description { font-size: 1.1rem; color: var(--text-muted); line-height: 1.6; max-width: 800px; margin: 0 auto; }
+        .project-tags { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+        .tag { background: var(--card-bg-alt); color: var(--primary); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600; }
+        .content-grid { display: grid; gap: 2rem; grid-template-columns: 2fr 1fr; }
+        .main-content { display: flex; flex-direction: column; gap: 2rem; }
+        .sidebar { display: flex; flex-direction: column; gap: 2rem; }
+        .content-card { background: var(--card-bg); border: 1px solid var(--glass-border); border-radius: 24px; padding: 2.5rem; box-shadow: 0 8px 32px var(--shadow); }
+        .section-title { font-size: 1.8rem; font-weight: 600; color: var(--text-dark); margin-bottom: 1.5rem; position: relative; }
+        .section-title::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 50px; height: 3px; background: var(--primary); border-radius: 2px; }
+        .content-text { color: var(--text-dark); font-size: 1rem; line-height: 1.7; }
+        .content-text p { margin-bottom: 1.5rem; }
+        .highlight-box { background: var(--card-bg-alt); border: 1px solid var(--glass-border); border-radius: 16px; padding: 1.5rem; margin: 1.5rem 0; }
+        .highlight-box .icon { font-size: 1.5rem; color: var(--primary); margin-bottom: 1rem; }
+        .features-list { list-style: none; padding: 0; }
+        .features-list li { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; color: var(--text-dark); }
+        .features-list li::before {
+            content: '✓'; color: var(--accent); font-weight: bold;
+            background: var(--card-bg-alt); width: 24px; height: 24px;
+            display: flex; align-items: center; justify-content: center; border-radius: 50%; flex-shrink: 0;
+        }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1rem; }
+        .tech-item { background: var(--primary); color: white; padding: 0.4rem 0.8rem; border-radius: 12px; font-size: 0.85rem; font-weight: 500; }
+        .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+        .metric { text-align: center; padding: 1rem; background: var(--card-bg-alt); border-radius: 12px; }
+        .metric-value { font-size: 1.5rem; font-weight: bold; color: var(--primary); display: block; }
+        .metric-label { font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem; }
+        .action-buttons { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 1.5rem; border-radius: 12px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 2px 8px var(--shadow); }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-secondary { background: var(--card-bg-alt); color: var(--primary); border: 1px solid var(--glass-border); }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px var(--shadow); }
+
+        /* Image Grid & Modal */
+        .image-grid { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+        .image-container { flex: 1; min-width: 200px; cursor: pointer; text-align: center; }
+        .image-container img { width: 100%; border-radius: 16px; transition: transform 0.3s ease; }
+        .image-container:hover img { transform: scale(1.05); }
+        .image-caption { margin-top: 0.5rem; font-size: 0.9rem; color: #546E7A; }
+
+        .modal { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
+        .modal-content { position: relative; max-width: 90vw; max-height: 90vh; text-align: center; }
+        .modal-image { max-width: 100%; max-height: 85vh; border-radius: 8px; }
+        .modal-caption { color: white; margin-top: 1rem; font-size: 1.1rem; }
+        .close { position: absolute; top: 20px; right: 30px; font-size: 40px; color: white; cursor: pointer; }
+
+        @media (max-width: 1024px) { .content-grid { grid-template-columns: 1fr; } .project-title { font-size: 2.5rem; } }
+        @media (max-width: 768px) { .main-container { padding: 1rem; } .project-header { padding: 2rem; } .project-title { font-size: 2rem; } .metrics { grid-template-columns: 1fr; } .action-buttons { flex-direction: column; } }
+    </style>
+</head>
+<body>
+
+    
+<div class="main-container">
+    <a href="projects.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+
+    <div class="project-header">
+        <h1 class="project-title">Mediastinal Lymph Node Analysis </h1>
+        <p class="project-subtitle">MLN Segmentation & Station Classification & Malignancy Classification </p>
+        <p class="project-description">
+            A comprehensive CT-based framework for mediastinal lymph node analysis, integrating three key tasks: segmentation, 16-class IASLC station mapping, and malignancy classification. The system achieves expert-level performance with F1 scores comparable to interobserver agreement.
+        </p>
+        <div class="project-tags">
+            <span class="tag">3D U-Net</span>
+            <span class="tag">IASLC Station Mapping</span>
+            <span class="tag">Medical Imaging</span>
+            <span class="tag">Feature Engineering</span>
+        </div>
+    </div>
+
+    <div class="content-grid">
+        <div class="main-content">
+            <div class="content-card">
+                <h2 class="section-title">Project Overview</h2>
+                <div class="content-text">
+                    <p>The Mediasten project presents a unified CT-based framework for comprehensive mediastinal lymph node (MLN) analysis, addressing three critical clinical tasks: automated segmentation/detection, precise IASLC station mapping across 16 classes, and malignancy classification. This research addresses significant limitations in existing public datasets and provides a clinically validated approach to automated lymph node assessment.</p>
+                    <p>The project utilized 69 cases from histopathologically confirmed lung cancer patients, with manual segmentation and labeling of 1,210 lymph nodes across stations 1-11 according to IASLC guidelines. The framework demonstrates expert-level consistency, achieving performance comparable to interobserver agreement among radiologists.</p>
+                </div>
+            </div>
+
+            <!-- Image Grid -->
+            <div class="image-grid">
+                <div class="image-container" onclick="openModal('mln_figures/5658_sg_model.png', 'Red channel visualization in QuPath')">
+                    <img src="mln_figures/5658_sg_model.png" alt="Red Channel">
+                    <div class="image-caption">A representative example for annotations on a case by senior radiologist annnotations.</div>
+                </div>
+                <div class="image-container" onclick="openModal('mln_figures/5658_sg.png', 'Green channel visualization in QuPath')">
+                    <img src="mln_figures/5658_sg.png" alt="Green Channel">
+                    <div class="image-caption">A representative comparision between model and senior radiologist annnotations.</div>
+                </div>
+                <div class="image-container" onclick="openModal('mln_figures/5658_sg_ar.png', 'Blue channel visualization in QuPath')">
+                    <img src="mln_figures/5658_sg_ar.png" alt="Blue Channel">
+                    <div class="image-caption">A representative comparision between senior and assistant radiologist annnotations.</div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="section-title">Technical Implementation</h2>
+                <div class="content-text">
+                    <p>The system architecture employs the PARIETAL model as backbone network—a patch-based residual 3D U-Net with volumetric patches of size [32, 128, 128]. The framework incorporates three distinct but integrated components: segmentation using custom preprocessing and augmentation, station classification via handcrafted spatial-anatomical features, and malignancy prediction combining radiomics with station-specific features.</p>
+
+                    <h4>Three-Stage Pipeline Architecture:</h4>
+                    <ul class="features-list">
+                        <li><strong>Segmentation Module:</strong> PARIETAL 3D U-Net with mediastinal windowing and advanced data augmentation</li>
+                        <li><strong>Station Classification:</strong> 333 handcrafted spatial-anatomical features with Random Forest classifier</li>
+                        <li><strong>Malignancy Prediction:</strong> 854 radiomics features + 333 station-specific features with ANOVA selection</li>
+                        <li><strong>Clinical Validation:</strong> Comprehensive intra- and inter-observer variability studies</li>
+                        <li><strong>Multi-modal Features:</strong> Integration of tumor location and ipsilateral indicators</li>
+                    </ul>
+
+                    <h4>Technical Specifications:</h4>
+                    <div class="tech-stack">
+                        <span class="tech-item">PARIETAL 3D U-Net</span>
+                        <span class="tech-item">Random Forest</span>
+                        <span class="tech-item">XGBoost</span>
+                        <span class="tech-item">TotalSegmentator</span>
+                        <span class="tech-item">3D Slicer</span>
+                        <span class="tech-item">PyRadiomics</span>
+                        <span class="tech-item">ANOVA Selection</span>
+                        <span class="tech-item">Monte Carlo CV</span>
+                    </div>
+                </div>
+            </div>
+
+
+        
+        <div class="content-text">
+                        
+                    </div>
+                </div>
+
+        <div class="sidebar">
+            <div class="content-card">
+                <h3 class="section-title">Project Metrics</h3>
+                <div class="metrics">
+                    <div class="metric">
+                        <span class="metric-value">84</span>
+                        <div class="metric-label">Patient Cases</div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">1,450</span>
+                        <div class="metric-label">Annotated Nodes</div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">16</span>
+                        <div class="metric-label">IASLC Stations</div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">0.57±0.15</span>
+                        <div class="metric-label">Segmentation Dice Score</div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value"> F1 score: 0.78</span>
+                        <div class="metric-label">Station Classification</div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">F1 score: 0.95 (benign), 0.77 (malignant)</span>
+                        <div class="metric-label">Malignancy Classification</div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <a href="#" class="btn btn-primary"><i class="fas fa-file-pdf"></i> Research Paper</a>
+                </div>
+            </div>
+
+            <div class="content-card">
+            <h3 class="section-title">Key Outcomes</h3>
+            <div class="content-text">
+                <p>This research was conducted at <strong>Dokuz Eylül University, Radiology Department</strong> with comprehensive clinical validation:</p>
+                <ul class="features-list">
+                    <li>
+                        Clinical Dataset Development
+                        <ul>
+                            <li>Expert Thoracic Radiologist (Primary Annotations)</li>
+                            <li>Assistant Radiologist (Inter-observer Studies)</li>
+                            <li>Histopathologically Confirmed Dataset</li>
+                        </ul>
+                    </li>
+                    <li>Multi-label Classification</li>
+                    <li>IASLC Guidelines Compliance</li>
+                    <li>PET/CT Correlation for Malignancy</li>
+                </ul>
+            </div>
+        </div> 
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content">
+        <img id="modalImage" class="modal-image">
+        <div id="modalCaption" class="modal-caption"></div>
+    </div>
+</div>
+
+<script>
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Add loading animation for buttons
+    document.querySelectorAll('.btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            if (this.getAttribute('href') === '#') {
+                e.preventDefault();
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+                setTimeout(() => { this.innerHTML = originalText; }, 2000);
+            }
+        });
+    });
+
+    // Modal Script
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    const closeBtn = document.getElementsByClassName('close')[0];
+
+    function openModal(src, caption) {
+        modal.style.display = 'flex';
+        modalImg.src = src;
+        modalCaption.textContent = caption;
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    closeBtn.onclick = closeModal;
+    modal.onclick = (e) => { if (e.target === modal) closeModal(); }
+    document.addEventListener('keydown', (e) => { if(e.key==='Escape') closeModal(); });
+</script>
+</body>
+</html>
