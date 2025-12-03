@@ -3,57 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mediasten Project - Elif Bilge</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Mediastinal Lymph Node Analysis - Elif Bilge</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
+        /* --- RESET & VARIABLES (Experience.html ile tamamen uyumlu) --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         :root {
-            --primary: #011b54;
-            --secondary: #cb7d46;
-            --accent: #0a6959;
-            --background: #fffffc;
-            --card-bg: #fffffc;
-            --card-bg-alt: #e8e8e4; 
-            --dark: #2C3E50;
-            --darker: #1A252F;
-            --light: #FAFAFA;
-            --glass-border: rgba(224, 93, 17, 0);
-            --shadow: rgba(138, 162, 158, 0.1);
-            --text-dark: #001748;
-            --text-muted: #546E7A;
-            --text-light: #1982b7;
+            /* Mor/Lila Tonları */
+            --primary: #533483; /* Ana Mor */
+            --primary-light: #e6e0f7; /* Açık Mor Dolgu Rengi */
+            --accent: #9333ea; /* Canlı Mor/İndigo */
+            --highlight: #e94560; /* Kırmızımsı vurgu */
+            
+            /* Beyaz ve Gölge Tonları */
+            --bg-color: #ffffff; /* Bembeyaz Arkaplan */
+            --card-bg: #f8f8f8; /* İçerik Kartı Hafif Kırık Beyaz */
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05); /* Yumuşak gölge */
+            
+            --text-main: #1a1a2e;
+            --text-muted: #6c757d;
+            
+            --radius-lg: 28px; 
+            --radius-md: 14px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body {
-            background: var(--background);
+            background-color: var(--bg-color);
             min-height: 100vh;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--text-dark);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            overflow-x: hidden;
+            padding: 2rem 0;
+            /* Arka plan görseli kaldırıldı: background-image: url('cat_doodle1.jpg'); */
         }
 
-        body {
-            background-image: url('cat_doodle1.jpg');
-            background-repeat: no-repeat;
-            background-position: 10% 110%;
-            background-size: 250px auto;
-            background-attachment: fixed;
-        }
-
+        /* --- LAYOUT: 2 Sütunlu Grid Düzeni (380px sidebar, 1fr main) --- */
         .main-container {
             display: grid;
-            grid-template-columns: 380px 1fr;
+            grid-template-columns: 350px 1fr; /* Sol Sidebar | Main Content */
             min-height: 100vh;
             gap: 2rem;
             padding: 2rem;
-            max-width: 1400px;
+            max-width: 1440px;
             margin: 0 auto;
+            align-items: flex-start;
         }
 
+        /* --- SIDEBAR - Sol Menü Alanı Stilleri --- */
         .sidebar {
             display: flex;
             flex-direction: column;
@@ -64,41 +70,40 @@
         }
 
         .profile-card {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
+            background: white; /* Experience.html card stili */
+            border-radius: var(--radius-lg);
             padding: 3rem 2.5rem;
             text-align: center;
-            box-shadow: 0 8px 32px var(--shadow);
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(0, 0, 0, 0.03); /* Hafif border eklendi */
         }
 
         .profile-img {
-            width: 140px;
-            height: 140px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            border: 3px solid var(--primary);
+            border: 3px solid var(--primary-light);
             object-fit: cover;
-            transition: all 0.3s ease;
-            background: linear-gradient(135deg, #ddd, #bbb);
-            box-shadow: 0 4px 16px var(--shadow);
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             margin: 0 auto 1.5rem;
         }
 
         .profile-img:hover {
             transform: scale(1.05);
-            box-shadow: 0 8px 24px var(--shadow);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
         }
 
         .profile-card h1 {
-            font-size: 3.2rem;
+            font-size: 2.2rem;
             font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
+            color: var(--text-main);
+            margin-bottom: 0.2rem;
             letter-spacing: -0.02em;
         }
 
         .profile-card .role {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--primary);
             font-weight: 600;
             margin-bottom: 1rem;
@@ -106,12 +111,13 @@
         }
 
         .profile-card .description {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text-muted);
             line-height: 1.5;
             margin-bottom: 2rem;
         }
 
+        /* Sosyal Linkler (Experience.html Icon Bar Stili) */
         .social-links {
             display: flex;
             justify-content: center;
@@ -119,95 +125,108 @@
         }
 
         .social-links a {
-            width: 54px;
-            height: 54px;
-            background: var(--card-bg-alt);
-            border: 1px solid var(--glass-border);
+            width: 48px;
+            height: 48px;
+            background: var(--primary-light);
             color: var(--primary);
-            border-radius: 16px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-            box-shadow: 0 2px 8px var(--shadow);
+            transition: var(--transition);
+            font-size: 1.25rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
         .social-links a:hover {
             background: var(--primary);
             color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px var(--shadow);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 15px rgba(83, 52, 131, 0.3);
         }
 
+        /* --- MAIN CONTENT Stilleri --- */
         .main-content {
             display: flex;
             flex-direction: column;
             gap: 2rem;
+            padding-top: 2rem; /* Sidebar ile hizalama için */
         }
 
+        /* Nav Tabs (Experience.html Nav Link Stiline Benzetildi) */
         .nav-tabs {
             display: flex;
             justify-content: flex-start;
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 1rem;
+            background: var(--card-bg); /* Hafif kırık beyaz arkaplan */
+            border-radius: var(--radius-md);
+            padding: 0.5rem;
             gap: 0.5rem;
-            flex-wrap: wrap;
-            box-shadow: 0 4px 16px var(--shadow);
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
         .nav-tab {
-            padding: 1rem 1.8rem;
+            padding: 0.8rem 1.5rem;
             background: transparent;
             border: none;
-            border-radius: 14px;
+            border-radius: 12px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
+            transition: var(--transition);
+            font-weight: 500;
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             text-decoration: none;
             display: inline-block;
         }
 
         .nav-tab:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px var(--shadow);
+            background: var(--primary-light);
+            color: var(--text-main);
+        }
+        
+        .nav-tab.active-tab { /* Aktif tabı belirginleştirmek için kullanılabilir */
+            background: var(--primary-light);
+            color: var(--accent);
+            font-weight: 600;
         }
 
+        /* İçerik Bölümleri (Experience.html content-section stili) */
         .content-section {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
+            background: white;
+            border-radius: var(--radius-lg);
             padding: 3rem;
-            box-shadow: 0 8px 32px var(--shadow);
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            animation: fadeIn 0.6s ease-out;
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Geri Butonu */
         .back-button {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.8rem 1.5rem;
-            background: var(--card-bg-alt);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
+            padding: 0.6rem 1.2rem;
+            background: var(--card-bg);
+            border-radius: 10px;
             color: var(--primary);
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            font-weight: 600;
+            transition: var(--transition);
             margin-bottom: 2rem;
+            border: 1px solid var(--primary-light);
         }
 
         .back-button:hover {
             background: var(--primary);
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px var(--shadow);
+            box-shadow: 0 4px 12px rgba(83, 52, 131, 0.2);
         }
 
         .project-header {
@@ -216,33 +235,41 @@
         }
 
         .project-title {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 1rem;
+            color: var(--primary); /* Ana mor renk kullanıldı */
+            margin-bottom: 0.5rem;
         }
 
         .project-subtitle {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--text-muted);
             margin-bottom: 2rem;
         }
 
+        /* Teknoloji Etiketleri (Skill Item Stili) */
         .project-technologies {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 0.8rem;
+            gap: 0.6rem;
             margin-bottom: 2rem;
         }
 
         .tech-tag {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 14px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .tech-tag:hover {
             background: var(--primary);
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            font-weight: 500;
+            transform: translateY(-2px);
         }
 
         .project-content {
@@ -250,9 +277,9 @@
         }
 
         .content-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-dark);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text-main);
             margin-bottom: 2rem;
         }
 
@@ -261,244 +288,24 @@
         }
 
         .content-text strong {
-            color: var(--primary);
+            color: var(--highlight); /* Kırmızımsı vurgu rengi kullanıldı */
         }
 
-        .images-section {
-            margin: 3rem 0;
-        }
-
-        .section-subtitle {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .image-container {
-            background: var(--card-bg-alt);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            overflow: hidden;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 16px var(--shadow);
-            transition: all 0.3s ease;
-        }
-
-        .image-container:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px var(--shadow);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
-            position: relative;
-        }
-
-        .project-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
-                        linear-gradient(-45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
-                        linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.1) 75%),
-                        linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.1) 75%);
-            background-size: 20px 20px;
-            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-            opacity: 0.3;
-        }
-
-        .image-caption {
-            padding: 1.5rem;
-            font-size: 1rem;
-            color: var(--text-muted);
-            font-style: italic;
-            text-align: center;
-            line-height: 1.5;
-        }
-
-        .image-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .image-grid .image-container {
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .image-grid .image-container:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 24px var(--shadow);
-        }
-
-        .image-grid img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 16px;
-        }
-
-        /* Modal Styles - Simplified and Fixed */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.9);
-            overflow: hidden;
-        }
-
-        .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 90vw;
-            max-height: 90vh;
-            text-align: center;
-        }
-
-        .modal-image {
-            max-width: 100%;
-            max-height: 85vh;
-            width: auto;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-caption {
-            color: white;
-            text-align: center;
-            margin-top: 1rem;
-            font-size: 1.1rem;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
-            display: inline-block;
-        }
-
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 10000;
-            background: rgba(0, 0, 0, 0.7);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .close:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .disclaimer {
-            background: var(--card-bg-alt);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-top: 3rem;
-            text-align: center;
-            font-style: italic;
-            color: var(--text-muted);
-        }
-
+        /* --- KEY OUTCOMES Card Stili --- */
         .content-card {
-            background: var(--card-bg-alt);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
+            background: white; /* Experience.html card stili */
+            border-radius: var(--radius-md);
             padding: 2.5rem;
-            margin: 3rem 0;
-            box-shadow: 0 4px 16px var(--shadow);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .highlight-box {
-            background: var(--card-bg);
-            border: 2px solid var(--primary);
-            border-radius: 16px;
-            padding: 1.8rem;
-            margin-bottom: 1.5rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px var(--shadow);
-        }
-
-        .highlight-box:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px var(--shadow);
-            border-color: var(--accent);
-        }
-
-        .highlight-box .icon {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-
-        .highlight-box strong {
-            display: block;
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            text-align: center;
-            font-weight: 600;
-        }
-
-        .features-list-sub {
-            list-style: none;
-            padding: 0;
-            margin-top: 1rem;
-        }
-
-        .features-list-sub li {
-            padding: 0.8rem 1.2rem;
-            background: var(--card-bg-alt);
-            border-radius: 10px;
-            margin-bottom: 0.8rem;
-            color: var(--text-dark);
+        .content-card .section-title {
             font-size: 1rem;
-            border-left: 3px solid var(--accent);
-            transition: all 0.3s ease;
-        }
-
-        .features-list-sub li:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateX(5px);
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: left;
         }
 
         .features-list {
@@ -511,42 +318,113 @@
             display: flex;
             align-items: flex-start;
             gap: 1rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-dark);
-            font-size: 1.05rem;
-            line-height: 1.6;
+            margin-bottom: 1.2rem;
+            color: var(--text-main);
+            font-size: 1rem;
+            line-height: 1.5;
+            font-weight: 600;
         }
 
         .features-list > li::before {
             content: '✓';
-            color: var(--accent);
+            color: white;
             font-weight: bold;
-            background: var(--card-bg-alt);
-            width: 28px;
-            height: 28px;
+            background: var(--accent); /* Canlı mor/indigo */
+            width: 24px;
+            height: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
             flex-shrink: 0;
             margin-top: 2px;
+            font-size: 0.8rem;
         }
 
         .features-list ul {
             list-style: none;
-            margin-top: 0.8rem;
+            margin-top: 0.5rem;
             padding-left: 0;
         }
 
         .features-list ul li {
-            padding: 0.6rem 0;
+            padding: 0.4rem 0;
             color: var(--text-muted);
-            font-size: 0.95rem;
-            border-left: 2px solid var(--card-bg-alt);
+            font-size: 0.9rem;
+            border-left: 2px solid var(--primary-light);
             padding-left: 1rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
+            font-weight: 400;
         }
 
+        /* --- GÖRSEL ALANLARI --- */
+        .images-section {
+            margin: 3rem 0;
+        }
+
+        .section-subtitle {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .image-container {
+            background: white;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .image-container:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+        
+        /* Placeholder Image Stili */
+        .project-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .image-caption {
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: center;
+            line-height: 1.4;
+            background: var(--card-bg);
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .image-grid img {
+            width: 100%;
+            height: 200px; /* Biraz küçültüldü */
+            object-fit: cover;
+            border-radius: var(--radius-md);
+        }
+        
+        .image-grid .image-container {
+             margin-bottom: 0; /* Grid içindeki margin kaldırıldı */
+        }
+
+        /* --- METRICS ALANLARI --- */
         .metrics-section {
             margin-top: 3rem;
         }
@@ -559,37 +437,38 @@
         }
 
         .metric-card {
-            background: var(--card-bg-alt);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 2rem 1.5rem;
+            background: var(--card-bg);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
             text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px var(--shadow);
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--primary-light);
         }
 
         .metric-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 6px 20px var(--shadow);
-            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent);
         }
 
         .metric-value {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            color: var(--primary);
+            color: var(--highlight); /* Kırmızımsı vurgu rengi */
             display: block;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
             line-height: 1.2;
         }
 
         .metric-label {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
             line-height: 1.4;
         }
 
-        @media (max-width: 1024px) {
+        /* --- RESPONSIVE AYARLAR --- */
+        @media (max-width: 1200px) {
             .main-container {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
@@ -603,18 +482,19 @@
 
             .main-content {
                 order: 2;
+                padding-top: 0;
             }
 
             .profile-card {
-                padding: 2rem;
-            }
-
-            .profile-card h1 {
-                font-size: 2.6rem;
+                padding: 2.5rem 2rem;
             }
 
             .project-title {
-                font-size: 2.2rem;
+                font-size: 2.4rem;
+            }
+            
+            .nav-tabs {
+                justify-content: center;
             }
         }
 
@@ -624,34 +504,29 @@
             }
 
             .profile-card h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
 
             .nav-tabs {
-                flex-direction: column;
-            }
-
-            .nav-tab {
-                text-align: center;
+                flex-direction: row;
             }
 
             .project-title {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
 
-            .project-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .image-grid {
+            .image-grid, .metrics-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .content-section {
+                padding: 2rem 1.5rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="main-container">
-        <!-- Sidebar -->
         <div class="sidebar">
             <div class="profile-card">
                 <img src="others/cv_photo.jpeg" class="profile-img">
@@ -676,7 +551,7 @@
                     <p>This research was conducted at <strong>Dokuz Eylül University, Radiology Department</strong> with comprehensive clinical validation:</p>
                     <ul class="features-list">
                         <li>
-                            <strong>Clinical Dataset Development</strong>
+                            <strong>Clinical Dataset</strong>
                             <ul>
                                 <li>Expert Thoracic Radiologist (Primary Annotations)</li>
                                 <li>Intra - Inter-observer Studies</li>
@@ -691,12 +566,11 @@
             </div>
         </div>
 
-        <!-- Main content -->
         <div class="main-content">
             <div class="nav-tabs">
                 <a href="index.html" class="nav-tab">About</a>
                 <a href="experience.html" class="nav-tab">Experience</a>
-                <a href="projects.html" class="nav-tab">Projects</a>
+                <a href="projects.html" class="nav-tab active-tab">Projects</a>
             </div>
 
             <div class="content-section">
@@ -723,21 +597,21 @@
                     </div>
 
                     <div class="images-section">
-                        <!-- Channel Images Grid -->
+                        <h2 class="section-subtitle">Visualizations & Results</h2>
                         <div class="image-grid">
                             <div class="image-container" onclick="openModal('mln_figures/5658_sg_model.png', 'A representative example for annotations on a case by senior radiologist annnotations.')">
-                                <img src="mln_figures/5658_sg_model.png" alt="A representative example for annotations on a case by senior radiologist annnotations.">
-                                <div class="image-caption">A representative example for annotations on a case by senior radiologist annnotations.</div>
+                                <img src="mln_figures/5658_sg_model.png" alt="Model vs. Annotations">
+                                <div class="image-caption">Model's Segmentation vs. Senior Radiologist Annotations</div>
                             </div>
 
                             <div class="image-container" onclick="openModal('mln_figures/5658_sg.png', 'A representative comparision between model and senior radiologist annnotations.')">
-                                <img src="mln_figures/5658_sg.png" alt="A representative comparision between model and senior radiologist annnotations.">
-                                <div class="image-caption">A representative comparision between model and senior radiologist annnotations.</div>
+                                <img src="mln_figures/5658_sg.png" alt="Model Comparison">
+                                <div class="image-caption">Comparison: Model vs. Senior Radiologist</div>
                             </div>
 
                             <div class="image-container" onclick="openModal('mln_figures/5658_sg_ar.png', 'A representative comparision between senior and assistant radiologist annnotations.')">
-                                <img src="mln_figures/5658_sg_ar.png" alt="A representative comparision between senior and assistant radiologist annnotations.">
-                                <div class="image-caption">A representative comparision between senior and assistant radiologist annnotations.</div>
+                                <img src="mln_figures/5658_sg_ar.png" alt="Radiologist Comparison">
+                                <div class="image-caption">Comparison: Senior vs. Assistant Radiologist</div>
                             </div>
                         </div>
                     </div>
@@ -758,7 +632,7 @@
                                 <div class="metric-label">IASLC Stations</div>
                             </div>
                             <div class="metric-card">
-                                <span class="metric-value">Dice coef: 0.57±0.15</span>
+                                <span class="metric-value">Dice: 0.57±0.15</span>
                                 <div class="metric-label">MLN Lymph Node Segmentation Dice score</div>
                             </div>
                             <div class="metric-card">
@@ -776,7 +650,6 @@
         </div>
     </div>
 
-    <!-- Modal for Image Viewing -->
     <div id="imageModal" class="modal">
         <span class="close">&times;</span>
         <div class="modal-content">
@@ -824,6 +697,28 @@
                 closeModal();
             }
         });
+        
+        // --- Ekstra: Aktif Navigasyon Sekmesi Yönetimi ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const path = window.location.pathname;
+            const filename = path.substring(path.lastIndexOf('/') + 1);
+            
+            // Eğer dosya adı 'mln.html' ise, 'Projects' sekmesini aktif yap.
+            if (filename === 'mln.html' || filename === '') { 
+                const projectTab = document.querySelector('.nav-tab[href="projects.html"]');
+                if (projectTab) {
+                    projectTab.classList.add('active-tab');
+                }
+            }
+            
+            // Eğer başka bir navigasyon sekmesinden geliniyorsa, onu aktif yap.
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                if (tab.getAttribute('href') === filename) {
+                    tab.classList.add('active-tab');
+                }
+            });
+        });
+
     </script>
 </body>
 </html>

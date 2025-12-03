@@ -3,189 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HE2DAPI Mapping - Elif Bilge</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>HER2 Scoring - Elif Bilge</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
+        /* --- RESET & VARIABLES (MLN, CMV, FISH Sayfalarıyla Tutarlı) --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         :root {
-            --primary: #011b54;
-            --secondary: #cb7d46;
-            --accent: #0a6959;
-            --background: #fffffc;
-            --card-bg: #fffffc;
-            --card-bg-alt: #e8e8e4; 
-            --dark: #2C3E50;
-            --darker: #1A252F;
-            --light: #FAFAFA;
-            --glass-border: rgba(224, 93, 17, 0);
-            --shadow: rgba(138, 162, 158, 0.1);
-            --text-dark: #001748;
-            --text-muted: #546E7A;
-            --text-light: #1982b7;
+            /* Mor/Lila Tonları */
+            --primary: #533483; /* Ana Mor */
+            --primary-light: #e6e0f7; /* Açık Mor Dolgu Rengi */
+            --accent: #9333ea; /* Canlı Mor/İndigo */
+            --highlight: #e94560; /* Kırmızımsı vurgu */
+            
+            /* Beyaz ve Gölge Tonları */
+            --bg-color: #ffffff; 
+            --card-bg: #ffffff; /* İçerik Kartı Beyaz */
+            --card-bg-alt: #f8f8f8; /* Hafif Kırık Beyaz */
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05); /* Yumuşak gölge */
+            
+            --text-main: #1a1a2e;
+            --text-muted: #6c757d;
+            
+            --radius-lg: 28px; 
+            --radius-md: 14px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body {
-            background: var(--background);
+            background-color: var(--bg-color);
             min-height: 100vh;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--text-dark);
-        }
-
-        body {
-            background-image: url('cat_doodle1.jpg');
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            overflow-x: hidden;
+            /* Önceki arka plan resmi kaldırıldı/temizlendi */
+            background-image: none;
             background-repeat: no-repeat;
             background-position: 10% 110%;
             background-size: 250px auto;
             background-attachment: fixed;
         }
 
+        /* --- LAYOUT: 2 SÜTUNLU GRID DÜZENİ --- */
         .main-container {
             display: grid;
-            grid-template-columns: 380px 1fr;
+            grid-template-columns: 350px 1fr; /* CMV/FISH ile tutarlı genişlik */
             min-height: 100vh;
             gap: 2rem;
             padding: 2rem;
             max-width: 1400px;
             margin: 0 auto;
+            align-items: flex-start; 
         }
 
+        /* --- SIDEBAR - Sol Menü Alanı --- */
         .sidebar {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 1.5rem; /* CMV/FISH ile tutarlı */
             position: sticky;
             top: 2rem;
             height: fit-content;
         }
 
-        .profile-card {
+        /* Ana Kart Stili (CMV/FISH ile Tutarlı) */
+        .profile-card, .content-section {
             background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 3rem 2.5rem;
+            border-radius: var(--radius-lg); 
+            padding: 2.5rem;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05); /* Yumuşak border */
+        }
+        
+        .profile-card {
             text-align: center;
-            box-shadow: 0 8px 32px var(--shadow);
         }
 
         .profile-img {
-            width: 140px;
-            height: 140px;
+            width: 120px; /* CMV/FISH ile tutarlı */
+            height: 120px;
             border-radius: 50%;
-            border: 3px solid var(--primary);
-            object-fit: cover;
-            transition: all 0.3s ease;
-            background: linear-gradient(135deg, #ddd, #bbb);
-            box-shadow: 0 4px 16px var(--shadow);
-            margin: 0 auto 1.5rem;
+            border: 4px solid var(--primary-light); /* Mor border */
+            box-shadow: 0 4px 16px rgba(83, 52, 131, 0.1);
+            margin: 0 auto 1rem;
         }
-
+        
         .profile-img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 24px var(--shadow);
+            transform: translateY(-2px); /* CMV/FISH ile tutarlı */
+            box-shadow: 0 6px 20px rgba(83, 52, 131, 0.2);
         }
 
         .profile-card h1 {
-            font-size: 3.2rem;
+            font-size: 2.2rem;
             font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
+            color: var(--text-main);
+            margin-bottom: 0.2rem;
             letter-spacing: -0.02em;
         }
 
         .profile-card .role {
-            font-size: 1.2rem;
-            color: var(--primary);
+            font-size: 1rem;
+            color: var(--accent);
             font-weight: 600;
-            margin-bottom: 1rem;
-            min-height: 1.5rem;
+            margin-bottom: 0.5rem;
         }
 
         .profile-card .description {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
-            line-height: 1.5;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 0.8rem;
         }
 
         .social-links a {
-            width: 54px;
-            height: 54px;
-            background: var(--card-bg-alt);
-            border: 1px solid var(--glass-border);
+            width: 45px; 
+            height: 45px;
+            background: var(--primary-light);
             color: var(--primary);
-            border-radius: 16px;
+            border-radius: var(--radius-md);
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-            box-shadow: 0 2px 8px var(--shadow);
+            border: none;
         }
 
         .social-links a:hover {
             background: var(--primary);
             color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px var(--shadow);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 15px rgba(83, 52, 131, 0.3);
         }
 
+        /* --- MAIN CONTENT STYLES --- */
         .main-content {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 1.5rem; /* CMV/FISH ile tutarlı */
         }
-
+        
+        /* Nav Tabs (CMV/FISH ile Tutarlı) */
         .nav-tabs {
             display: flex;
             justify-content: flex-start;
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 1rem;
+            background: var(--card-bg-alt); 
+            border-radius: var(--radius-md);
+            padding: 0.5rem;
             gap: 0.5rem;
-            flex-wrap: wrap;
-            box-shadow: 0 4px 16px var(--shadow);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: none;
         }
 
         .nav-tab {
-            padding: 1rem 1.8rem;
-            background: transparent;
-            border: none;
-            border-radius: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            font-weight: 500;
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            transition: var(--transition);
             text-decoration: none;
-            display: inline-block;
         }
-
+        
         .nav-tab:hover {
+            background: var(--primary-light);
+            color: var(--text-main);
+            transform: none; 
+            box-shadow: none;
+        }
+        
+        /* Aktif sayfa stili */
+        .nav-tab.active-page {
             background: var(--primary);
             color: white;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px var(--shadow);
+            font-weight: 600;
         }
 
         .content-section {
             background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
+            border-radius: var(--radius-lg);
             padding: 3rem;
-            box-shadow: 0 8px 32px var(--shadow);
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .back-button {
@@ -193,21 +207,21 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.8rem 1.5rem;
-            background: var(--card-bg-alt);
-            border: 1px solid var(--glass-border);
+            background: var(--primary-light);
             border-radius: 12px;
             color: var(--primary);
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            font-weight: 600; 
+            transition: var(--transition);
             margin-bottom: 2rem;
+            border: none;
         }
 
         .back-button:hover {
             background: var(--primary);
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px var(--shadow);
+            box-shadow: 0 4px 12px rgba(83, 52, 131, 0.3);
         }
 
         .project-header {
@@ -217,13 +231,13 @@
 
         .project-title {
             font-size: 3rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 1rem;
+            font-weight: 800; 
+            color: var(--primary); 
+            margin-bottom: 0.5rem;
         }
 
         .project-subtitle {
-            font-size: 1.3rem;
+            font-size: 1.2rem; 
             color: var(--text-muted);
             margin-bottom: 2rem;
         }
@@ -237,22 +251,24 @@
         }
 
         .tech-tag {
+            background: var(--primary-light); 
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 14px; 
+            font-size: 0.85rem;
+            font-weight: 600; 
+            transition: var(--transition);
+        }
+        
+        .tech-tag:hover {
             background: var(--primary);
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .project-content {
-            max-width: 100%;
         }
 
         .content-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-dark);
+            font-size: 1rem; 
+            line-height: 1.7;
+            color: var(--text-main);
             margin-bottom: 2rem;
         }
 
@@ -261,7 +277,8 @@
         }
 
         .content-text strong {
-            color: var(--primary);
+            color: var(--highlight); /* Kırmızımsı vurgu */
+            font-weight: 600;
         }
 
         .images-section {
@@ -269,39 +286,40 @@
         }
 
         .section-subtitle {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text-dark);
+            font-size: 1.8rem; 
+            font-weight: 700;
+            color: var(--text-main);
             margin-bottom: 2rem;
             text-align: center;
         }
 
+        /* Image Container (CMV/FISH ile Tutarlı) */
         .image-container {
             background: var(--card-bg-alt);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
+            border-radius: var(--radius-md);
             overflow: hidden;
             margin-bottom: 2rem;
-            box-shadow: 0 4px 16px var(--shadow);
-            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); 
+            transition: var(--transition);
             cursor: pointer;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .image-container:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px var(--shadow);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
         }
 
         .image-container img {
             width: 100%;
             height: 400px;
             object-fit: cover;
-            border-radius: 16px;
+            border-radius: 0; 
         }
 
         .image-caption {
-            padding: 1.5rem;
-            font-size: 1rem;
+            padding: 1rem 1.5rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
             font-style: italic;
             text-align: center;
@@ -310,16 +328,18 @@
 
         .disclaimer {
             background: var(--card-bg-alt);
-            border: 1px solid var(--glass-border);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             border-radius: 16px;
             padding: 2rem;
             margin-top: 3rem;
             text-align: center;
             font-style: italic;
             color: var(--text-muted);
+            box-shadow: var(--shadow-soft);
         }
 
-        /* Modal Styles */
+
+        /* Modal Styles (CMV/FISH ile Tutarlı) */
         .modal {
             display: none;
             position: fixed;
@@ -383,9 +403,12 @@
         }
 
         .close:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: var(--primary);
+            color: white;
+            opacity: 0.9;
         }
 
+        /* --- Responsive Ayarlamalar --- */
         @media (max-width: 1024px) {
             .main-container {
                 grid-template-columns: 1fr;
@@ -402,12 +425,8 @@
                 order: 2;
             }
 
-            .profile-card {
-                padding: 2rem;
-            }
-
-            .profile-card h1 {
-                font-size: 2.6rem;
+            .profile-card, .content-section {
+                border-radius: var(--radius-md);
             }
 
             .project-title {
@@ -425,26 +444,21 @@
             }
 
             .nav-tabs {
-                flex-direction: column;
+                flex-direction: row; 
+                justify-content: center;
+                flex-wrap: wrap;
             }
-
             .nav-tab {
-                text-align: center;
+                flex-grow: 1;
             }
-
             .project-title {
                 font-size: 1.8rem;
-            }
-
-            .project-subtitle {
-                font-size: 1.1rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="main-container">
-        <!-- Sidebar -->
         <div class="sidebar">
             <div class="profile-card">
                 <img src="others/cv_photo.jpeg" class="profile-img">
@@ -464,12 +478,11 @@
             </div>
         </div>
 
-        <!-- Main content -->
         <div class="main-content">
             <div class="nav-tabs">
                 <a href="index.html" class="nav-tab">About</a>
                 <a href="experience.html" class="nav-tab">Experience</a>
-                <a href="projects.html" class="nav-tab">Projects</a>
+                <a href="projects.html" class="nav-tab active-page">Projects</a>
             </div>
 
             <div class="content-section">
@@ -500,28 +513,25 @@
                             *The images displayed below exhibit the outcomes achieved using the prototype interface that I developed.
                         </p>
 
-                        <!-- Example 1 -->
                         <div class="image-container" onclick="openModal('her2_2.png', 'An example result of a selected region on a whole slide image where its ground truth is HER2-class2.')">
                             <img src="her2_figures/her2_2.png" alt="her2 Example 1">
                             <div class="image-caption">
-                               An example result of a selected region on a whole slide image where its ground truth is HER2-class2. <em>Click to view larger.</em>
+                               An example result of a selected region on a whole slide image where its ground truth is HER2-class2.
                             </div>
                         </div>
 
-                        <!-- Example 2 -->
                         <div class="image-container" onclick="openModal('her2_0.png', 'Another example of matching region from a H&E to DAPI image')">
                             <img src="her2_figures/her2_0.png" alt="HE2DAPI Example 2">
                             <div class="image-caption">
-                                Another example result of a selected region on a whole slide image where its ground truth is HER2-class0. <em>Click to view larger.</em>
+                                Another example result of a selected region on a whole slide image where its ground truth is HER2-class0. 
                             </div>
                         </div>
                     </div>
 
-                     <!-- Example 3 -->
-                        <div class="image-container" onclick="openModal('her2_3.png', 'Another example of matching region from a H&E to DAPI image')">
+                     <div class="image-container" onclick="openModal('her2_3.png', 'Another example of matching region from a H&E to DAPI image')">
                             <img src="her2_figures/her2_3.png" alt="HE2DAPI Example 2">
                             <div class="image-caption">
-                                Another example result of a selected region on a whole slide image where its ground truth is HER2-class3. <em>Click to view larger.</em>
+                                Another example result of a selected region on a whole slide image where its ground truth is HER2-class3. 
                             </div>
                         </div>
                     </div>
@@ -530,7 +540,6 @@
         </div>
     </div>
 
-    <!-- Modal for Image Viewing -->
     <div id="imageModal" class="modal">
         <span class="close">&times;</span>
         <div class="modal-content">
